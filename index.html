@@ -1194,8 +1194,7 @@
           return probability
 
       def Poisson(k, lambd):
-          probability = poisson.pmf(k, lambd)
-          return probability
+          return poisson.pmf(k, lambd)
 
       def Elementos_de_probabilidades():
           document.getElementById("title").style.display = "none"
@@ -1521,12 +1520,12 @@
       def tresPontoNove():
           lambd = float(document.getElementById("3_9_lambda").value)
 
-          p_xi8 = Poisson(8,lambd) - Poisson(7,lambd)
-          p_xmin5 = Poisson(4,lambd)
-          p_xmaxi3 = 1 - Poisson(2,lambd)
-          p_xmaxi20 = 1 - Poisson(19,lambd)
+          p_xi8 = (Poisson(8,lambd) - Poisson(7,lambd))
+          p_xmin5 = poisson.cdf(4, lambd) # acumuuladas até 4.
+          p_xmaxi3 = (1 - Poisson(2,lambd))
+          p_xmaxi20 = (1 - Poisson(19,lambd))
           p_xi0 = Poisson(0,lambd)
-          p_yi3 = Poisson(3,4) - Poisson(2,4)
+          p_yi3 = (Poisson(3,4) - Poisson(2,4))
 
           values = {
               "3_9_a": format(p_xi8, '.4f'),
