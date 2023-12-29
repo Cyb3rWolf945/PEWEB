@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html class="h-full w-full" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Probabilidades e Estatística</title>
+    <link
+      rel="stylesheet"
+      href="https://pyscript.net/releases/2023.05.1/pyscript.css"
+    />
+    <script
+      defer
+      src="https://pyscript.net/releases/2023.05.1/pyscript.js"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="w-full h-full">
+    <py-config> packages = [ "matplotlib", "numpy", "scipy"] </py-config>
+    <div id="title" class="flex justify-center items-center h-60 w-full">
+      <h1 class="text-7xl text-cyan-500 text-center font-mono">Probabilidade e Estatística</h1>
+    </div>
+    <div id="buttons1" class="flex justify-center items-center h-40 w-full">
+      <button py-click="Elementos_de_probabilidades()" class="h-28 w-80 cursor-pointer bg-cyan-500 rounded-lg m-10 font-mono text-white" type="button">
+        1. Elementos de Probabilidades
+      </button>
+      <button py-click="Variaveis_aleatorias()" class="h-28 w-80 cursor-pointer bg-cyan-500 rounded-lg m-10 font-mono text-white" type="button">
+        2. Variáveis Aleatórias
+      </button>
+      <button py-click="Algumas_distribuicoes_probabilidade()" class="h-28 w-80 cursor-pointer bg-cyan-500 rounded-lg m-10 font-mono text-white" type="button">
+        3. Algumas Distribuições de Probabilidade
+      </button>
+    </div>
+    <div id="buttons2" class="flex justify-center items-center h-40 w-full">
+      <button py-click="Estimacao_parametros()" class="h-28 w-80 cursor-pointer bg-cyan-500 rounded-lg m-10 font-mono text-white" type="button">
+        5. Estimação de Parâmetros
+      </button>
+      <button py-click="Testes_hipoteses()" class="h-28 w-80 cursor-pointer bg-cyan-500 rounded-lg m-10 font-mono text-white" type="button">
+        6. Testes de Hipóteses
+      </button>
+      <button py-click="Correlacao_regressao()" class="h-28 w-80 cursor-pointer bg-cyan-500 rounded-lg m-10 font-mono text-white" type="button">
+        7. Correlação e Regressão
+      </button>
+    </div>
+    <div id="voltar" class="hidden flex-col justify-center items-center h-20 w-full">
+      <button py-click="voltar()" class="h-20 w-40 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">Voltar ao Menu</button>
+    </div>
+    <div id="exercicios1" class="hidden flex-row justify-center items-center h-28 w-full">
+      <button py-click="show1_9()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        1.9.
+      </button>
+      <button py-click="show1_13()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        1.13.
+      </button>
+      <button py-click="show1_26()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        1.26.
+      </button>
+    </div>
+    <div id="1_9" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./1_9.jpg" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Consumidores das marcas
+            </caption>
+            <tr>
+              <td class="text-right">
+                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              </td>
+              <td class="text-right">
+                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+              </td>
+              <td class="text-right">
+                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+              </td>
+              <td class="text-right">
+                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              </td>
+              <td rowspan="2" class="text-right">
+                <button py-click="umPontoNove()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
+              </td>
+              <td class="text-right">
+                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) P(A u B) = P(A) + P(B) - P(A i B) 
+
+          b) P(A i C i B') = P(A i C) - P(A i B i C)
+
+          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+
+          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+
+          e) P((A u B u C)') = 1 - P(A u B u C)
+        </py-repl>
+      </div>
+      <table class="font-mono mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
+            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
+            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
+            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
+            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="1_13" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[30%] w-[30%] self-center" src="./1_13.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <div class="object-center relative overflow-x-auto sm:rounded-lg">
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Dados
+            </caption>
+            <tr>
+              <td class="text-right">
+                A: <input class="text-center" id="1_13_p_A" type="number" value="0.5" />
+              </td>
+              <td class="text-right">
+                A ou B: <input class="text-center" id="1_13_p_AuB" type="number" value="0.7" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                1. A|B: <input class="text-center" id="1_13_p_A_B_1" type="number" value="0.5" />
+              </td>
+              <td class="text-right">
+                2. A|B: <input class="text-center" id="1_13_p_A_B_2" type="number" value="0.4" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                <button py-click="umPontoTreze()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) A e B são independentes, logo P(A u B) = P(A) * P(B) <=>
+             <=> P(A u B) = P(A) + P(B) - P(A i B) <=> P(A u B) = P(A) + P(B) - P(A) * P(B)
+
+          b) A e B são mutuamente exclusivos, logo P(A u B) = P(A) + P(B) - 0
+
+          c) Para P(A|B) = 0,5
+             P(A|B) = P(A i B) / P(B) <=> P(B) * P(A|B) = P(A i B) <=>
+             <=> P(B) * P(A|B) = P(A) + P(B) - P(A u B) <=>
+             <=> P(B) * P(A|B) - P(B) = P(A) - P(A u B) <=>
+             <=> P(B) * (P(A|B) - 1) = P(A) - P(A u B) <=>
+             <=> P(B) = (P(A) - P(A u B)) / (P(A|B) - 1)
+             
+             Para P(A|B) = 0,4
+             P(B) = (P(A) - P(A u B)) / (P(A|B) - 1)
+        </py-repl>
+      </div>
+      <table class="font-mono mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>a) P(B) = <span id="1_13_a">0</span></p>
+            <p>b) P(B) = <span id="1_13_b">0</span></p>
+            <p>c) P(B) = <span id="1_13_c1">0</span></p>
+            <p>   P(B) = <span id="1_13_c2">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="1_26" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./1_26.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Dados
+            </caption>
+            <tr>
+              <td class="text-right">
+                D: <input class="text-center" id="1_26_p_D" type="number" value="0.005" />
+              </td>
+              <td class="text-right">
+                T|D: <input class="text-center" id="1_26_p_T_D" type="number" value="0.8" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                T|D': <input class="text-center" id="1_26_p_T_Dn" type="number" value="0.05" />
+              </td>
+              <td class="text-center">
+                <button py-click="umPontoVinteSeis()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) P(D i T) = P(T|D) * P(D)
+             P(T) = P(T|D) * P(D) + P(T|D') * (1 - P(D))
+             P(D|T) = P(D i T) / P(T)
+
+          b) P(D|T') = (P(D) - P(D i T)) / (1 - P(T))
+             P(D'|T') = 1 - P(D|T')
+
+          c) P(T' i D) = (1 - P(T|D)) * P(D)
+        </py-repl>
+      </div>
+      <table class="font-mono mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>a) P(D|T) = <span id="1_26_a">0</span></p>
+            <p>b) P(D'|T') = <span id="1_26_b">0</span></p>
+            <p>c) P(T' i D) = <span id="1_26_c">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="exercicios2" class="hidden flex-row justify-center items-center h-28 w-full">
+      <button py-click="exercicios2_1()" class="h-20 w-80 cursor-pointer bg-cyan-500 rounded-lg mr-4 font-mono text-white" type="button">
+        Variavéis Aleatórias Discretas
+      </button>
+      <button py-click="exercicios2_2()" class="h-20 w-80 cursor-pointer bg-cyan-500 rounded-lg ml-4 font-mono text-white" type="button">
+        Variavéis Aleatórias Contínuas
+      </button>
+    </div>
+    <div id="exercicios2_1" class="hidden flex-row justify-center items-center h-28 w-full">
+      <button py-click="show2_1()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        2.1.
+      </button>
+      <button py-click="show2_7()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        2.7.
+      </button>
+    </div>
+    <div id="2_1" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./2_1.png" alt="exercicio" />
+      </div>
+        <py-repl>
+          a)         /D
+                    D
+                   / \D'
+                  D
+                 / \ /D
+                /   D'
+               /     \D'
+              <
+               \     /D
+                \   D
+                 \ / \D'
+                  D
+                   \ /D
+                    D'
+                     \D'
+
+          Ω = {(D, D, D), (D, D, D'), (D, D', D), (D, D', D'), (D', D, D), (D', D, D'), (D', D', D), (D', D', D')}
+
+          b) X = {0, 1, 2, 3}
+
+          c) f(0) = (D, D, D) / 8
+             f(1) = (D, D, D'), (D, D', D), (D', D, D) / 8
+             f(2) = (D, D', D'), (D', D, D'), (D', D', D) / 8
+             f(3) = (D', D', D') / 8
+
+          d) f(0) = f(0)
+             f(1) = F(0) + f(1)
+             f(2) = F(1) + f(2)
+             f(3) = F(2) + f(3)
+
+             P(X <= 2) = F(2)
+
+          e) E(X) = Σ xi * f(xi)
+             E(X^2) = Σ xi^2 * f(xi)
+             V(X) = E(X^2) * (E(X))^2
+        </py-repl>
+        <div class="flex justify-evenly items-center m-8">
+          <div class="relative overflow-x-auto sm:rounded-lg">
+            <table class="font-mono table-auto">
+              <caption class="text-center bg-cyan-500 rounded-lg text-white">
+                Dados
+              </caption>
+              <tr>
+                <td class="text-right">
+                  x: <input class="text-center" id="2_1_x_0" type="number" value="0" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_1_x_1" type="number" value="1" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_1_x_2" type="number" value="2" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_1_x_3" type="number" value="3" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-right">
+                  f(x): <input class="text-center" id="2_1_f_0" type="number" value="0.125" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_1_f_1" type="number" value="0.375" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_1_f_2" type="number" value="0.375" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_1_f_3" type="number" value="0.125" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4" class="text-center">
+                  <button py-click="doisPontoUm()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="relative overflow-x-auto sm:rounded-lg">
+            <table class="font-mono border table-auto text-center">
+              <caption>
+                d)
+              </caption>
+              <tr>
+                <td><p>F(X):</p></td>
+              </tr>
+              <tr>
+                <td><p>0     se     x < <span id="2_1_x_0">0</span></p></td>
+              </tr>
+              <tr>
+                <td><p><span id="2_1_F_0">0</span>     se     <span id="2_1_X_0">0</span> <= x < <span id="2_1_X_1">0</span></p></td>                
+              </tr>
+              <tr>
+                <td><p><span id="2_1_F_1">0</span>     se     <span id="2_1_X1_1">0</span> <= x < <span id="2_1_X_2">0</span></p></td>
+              </tr>
+              <tr>
+                <td><p><span id="2_1_F_2">0</span>     se     <span id="2_1_X1_2">0</span> <= x < <span id="2_1_X_3">0</span></p></td>               
+              </tr>
+              <tr>
+                <td><p><span id="2_1_F_3">0</span>     se      x >= <span id="2_1_X1_3">0</span></p></td>               
+              </tr>
+              <tr>
+                <td><div id="plot1"></div></td>               
+              </tr>
+            </table>
+            
+          </div>
+      </div>
+      <table class="mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>d) P(X <= 2) = <span id="2_1_d">0</span></p>
+            <p>e) E(X) = <span id="2_1_e1">0</span></p>
+            <p>   V(X) = <span id="2_1_e2">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="2_7" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./2_7.png" alt="exercicio" />
+      </div>
+        <div class="flex justify-evenly items-center m-8">
+          <div class="relative overflow-x-auto sm:rounded-lg">
+            <table class="font-mono table-auto">
+              <caption class="text-center bg-cyan-500 rounded-lg text-white">
+                Dados
+              </caption>
+              <tr>
+                <td class="text-right">
+                  x: <input class="text-center" id="2_7_x_2" type="number" value="2" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_x_3" type="number" value="3" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_x_4" type="number" value="4" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_x_5" type="number" value="5" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_x_6" type="number" value="6" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_x_7" type="number" value="7" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_x_8" type="number" value="8" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-right">
+                  f(x): <input class="text-center" id="2_7_f_2" type="number" value="0.10" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_f_3" type="number" value="0.35" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_f_4" type="number" value="0.20" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_f_5" type="number" value="0.10" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_f_6" type="number" value="0.10" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_f_7" type="number" value="0.08" />
+                </td>
+                <td class="text-right">
+                  <input class="text-center" id="2_7_f_8" type="number" value="0.07" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="7" class="text-center">
+                  <button py-click="doisPontoSete()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+                </td>
+              </tr>
+            </table>
+            <py-repl>
+              a) μ = E(X) = Σ xi * f(xi)
+                 Mo =
+                 Me =
+
+              b) E(X^2) = Σ xi^2 * f(xi)
+                 V(X) = E(X^2) * (E(X))^2
+                 σx = √(V(X))
+
+              c)
+
+              d) Q1 =
+                 Q3 =
+            </py-repl>
+          </div>
+      </div>
+      <table class="font-mono mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>d) P(X <= 2) = <span id="2_1_d">0</span></p>
+            <p>e) E(X) = <span id="2_1_e1">0</span></p>
+            <p>V(X) = <span id="2_1_e2">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="exercicios2_2" class="hidden flex-row justify-center items-center h-28 w-full">
+      <button py-click="show2_16()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        2.16
+      </button>
+      <button py-click="show2_11()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        2.
+      </button>
+    </div>
+    <div id="2_16" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./2_16.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="table-auto">
+            <caption>
+              Consumidores das marcas
+            </caption>
+            <tr>
+              <td>
+                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              </td>
+              <td>
+                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+              </td>
+              <td>
+                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+              </td>
+              <td>
+                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
+              </td>
+              <td>
+                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
+              </td>
+              <td class="text-center">
+                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) P(A u B) = P(A) + P(B) - P(A i B) 
+
+          b) P(A i C i B') = P(A i C) - P(A i B i C)
+
+          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+
+          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+
+          e) P((A u B u C)') = 1 - P(A u B u C)
+        </py-repl>
+      </div>
+      <table class="mb-4">
+        <tr>
+          <th>Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around mt-8">
+            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
+            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
+            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
+            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
+            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="2_11" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./2_11.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="table-auto">
+            <caption>
+              Consumidores das marcas
+            </caption>
+            <tr>
+              <td>
+                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              </td>
+              <td>
+                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+              </td>
+              <td>
+                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+              </td>
+              <td>
+                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
+              </td>
+              <td>
+                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
+              </td>
+              <td class="text-center">
+                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) P(A u B) = P(A) + P(B) - P(A i B) 
+
+          b) P(A i C i B') = P(A i C) - P(A i B i C)
+
+          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+
+          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+
+          e) P((A u B u C)') = 1 - P(A u B u C)
+        </py-repl>
+      </div>
+      <table class="mb-4">
+        <tr>
+          <th>Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around mt-8">
+            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
+            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
+            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
+            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
+            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="exercicios3" class="hidden flex-row justify-center items-center h-28 w-full">
+      <button py-click="show3_1()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        3.1.
+      </button>
+      <button py-click="show3_9()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        3.9.
+      </button>
+    </div>
+    <div id="3_1" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./3_1.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Dados
+            </caption>
+            <tr>
+              <td class="text-center">
+                n: <input class="text-center" id="3_1_n" type="number" value="6" />
+              </td>
+              <td class="text-center">
+                p: <input class="text-center" id="3_1_p" type="number" value="0.4" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-center">
+                <button py-click="tresPontoUm()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          X -> nº de garrafas, em 6, com menos de 1 litro
+          X ~ B(n = 6, p = 0.4)
+          X = 0, 1, 2, ..., 6
+
+          a) P(X = 2) = f(2)
+
+          b) P(X <= 2) = P(X = 0) + P(X = 1) + P(X = 2) = f(0) + f(1) + f(2)
+
+          c) P(X >= 2) = 1 - P(X < 2) = 1 - P(X <= 1) = 1 - (f(0) + f(1))
+
+          d) P(X = 6) = f(6)
+
+          e) P(X = 0) = f(0)
+        </py-repl>
+      </div>
+      <table class="font-mono mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>a) P(X = 2) = <span id="3_1_a">0</span></p>
+            <p>b) P(X <= 2) = <span id="3_1_b">0</span></p>
+            <p>c) P(X >= 2) = <span id="3_1_c">0</span></p>
+            <p>d) P(X = 6) = <span id="3_1_d">0</span></p>
+            <p>e) P(X = 0) = <span id="3_1_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="3_9" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./3_9.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Dados
+            </caption>
+            <tr>
+              <td class="text-right">
+                λ: <input class="text-center" id="3_9_lambda" type="number" value="10" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <button py-click="tresPontoNove()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          X -> nº de chamadas que chegam, em 5 minutos
+          X ~ P(λ = 10)
+          X = 0, 1, 2, ...
+
+          a) P(X = 8) = f(8) = P(X <= 8) - P(X <= 7) = F(8) - F(7)
+
+          b) P(X < 5) = P(X <= 4) = F(4)
+
+          c) P(X >= 3) = 1 - P(X < 3) = 1 - P(X <= 2) = 1 - F(2)
+
+          d) P(X >= 20) = 1 - P(X < 20) = 1 - P(X <= 19) = 1 - F(19)
+
+          e) P(X = 0) = f(0)
+
+          f) Y -> nº de chamadas telefónicas que chegam à central, em 2 minutos
+          λ = 10 ------- 5 minutos
+              λ' ------- 2 minutos
+          Y ~ P(λ' = 4)
+          P(Y = 3) = P(Y <= 3) - P(Y <= 2) = F(3) - F(2)
+        </py-repl>
+      </div>
+      <table class="font-mono mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>a) P(X = 8) = <span id="3_9_a">0</span></p>
+            <p>b) P(X < 5) = <span id="3_9_b">0</span></p>
+            <p>c) P(X >= 3) = <span id="3_9_c">0</span></p>
+            <p>d) P(X >= 20) = <span id="3_9_d">0</span></p>
+            <p>e) P(X = 0) = <span id="3_9_e">0</span></p>
+            <p>f) P(X = 3) = <span id="3_9_f">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="exercicios5" class="hidden flex-row justify-center items-center h-28 w-full">
+      <button py-click="show5_7()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        5.7.
+      </button>
+      <button py-click="show5_11()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        5.11.
+      </button>
+    </div>
+    <div id="5_7" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./5_7.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Dados
+            </caption>
+            <tr>
+              <td class="text-right">
+                σ: <input class="text-center" id="5_7_desvio" type="number" value="14" />
+              </td>
+              <td class="text-right">
+                n: <input class="text-center" id="5_7_n" type="number" value="12" />
+              </td>
+              <td class="text-right">
+                x̅: <input class="text-center" id="5_7_xmedia" type="number" value="148.3" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                1 - α: <input class="text-center" id="5_7_ummenosalfa" type="number" value="0.99" />
+              </td>
+              <td class="text-right">
+                erro <= <input class="text-center" id="5_7_erro" type="number" value="5" />
+              </td>
+              <td class="text-right">
+                σ da d: <input class="text-center" id="5_7_desvio2" type="number" value="12" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                <button py-click="cincoPontoSete()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          μ = E(X) = Σ xi * f(xi)
+                 Mo =
+                 Me =
+              b) E(X^2) = Σ xi^2 * f(xi)
+                 V(X) = E(X^2) * (E(X))^2
+                 σ
+          a) P(A u B) = P(A) + P(B) - P(A i B) 
+
+          b) P(A i C i B') = P(A i C) - P(A i B i C)
+
+          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+
+          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+
+          e) P((A u B u C)') = 1 - P(A u B u C)
+        </py-repl>
+      </div>
+      <table class="font-mono mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
+            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
+            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
+            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
+            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="5_11" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./5_11.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Dados
+            </caption>
+            <tr>
+              <td class="text-right">
+                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              </td>
+              <td class="text-right">
+                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+              </td>
+              <td class="text-right">
+                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-center">
+                <button py-click="cincoPontoOnze()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) P(A u B) = P(A) + P(B) - P(A i B) 
+
+          b) P(A i C i B') = P(A i C) - P(A i B i C)
+
+          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+
+          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+
+          e) P((A u B u C)') = 1 - P(A u B u C)
+        </py-repl>
+      </div>
+      <table class="font-mono mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
+            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
+            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
+            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
+            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="exercicios6" class="hidden flex-row justify-center items-center h-28 w-full">
+      <button py-click="show6_2()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        6.2.
+      </button>
+      <button py-click="show6_4()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        6.4.
+      </button>
+    </div>
+    <div id="6_2" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./6_2.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <!-- Tabela de valores -->
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Dados
+            </caption>
+            <tr>
+              <td class="text-right">
+                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              </td>
+              <td class="text-right">
+                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+              </td>
+              <td class="text-right">
+                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-center">
+                <button py-click="seisPontoDois()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) P(A u B) = P(A) + P(B) - P(A i B) 
+
+          b) P(A i C i B') = P(A i C) - P(A i B i C)
+
+          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+
+          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+
+          e) P((A u B u C)') = 1 - P(A u B u C)
+        </py-repl>
+      </div>
+      <table class="font-mono mb-4">
+        <tr>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around">
+            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
+            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
+            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
+            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
+            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="6_4" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./6_4.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <!-- Tabela de valores -->
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="table-auto">
+            <caption>
+              Consumidores das marcas
+            </caption>
+            <tr>
+              <td>
+                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              </td>
+              <td>
+                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+              </td>
+              <td>
+                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+              </td>
+              <td>
+                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
+              </td>
+              <td>
+                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
+              </td>
+              <td class="text-center">
+                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) P(A u B) = P(A) + P(B) - P(A i B) 
+
+          b) P(A i C i B') = P(A i C) - P(A i B i C)
+
+          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+
+          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+
+          e) P((A u B u C)') = 1 - P(A u B u C)
+        </py-repl>
+      </div>
+      <table class="mb-4">
+        <tr>
+          <th>Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around mt-8">
+            <p>a) P(A u B) =<span id="1_9_a">0</span></p>
+            <p>b) P(A i C i B') =<span id="1_9_b">0</span></p>
+            <p>c) P(C i A' i B') =<span id="1_9_c">0</span></p>
+            <p>d) P(A u B u C) =<span id="1_9_d">0</span></p>
+            <p>e) P((A u B u C)') =<span id="1_9_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="exercicios7" class="hidden flex-row justify-center items-center h-28 w-full">
+      <button py-click="show7_9()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        7.9.
+      </button>
+      <button py-click="show7_11()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
+        7.11.
+      </button>
+    </div>
+    <div id="7_9" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./7_9.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <!-- Tabela de valores -->
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="table-auto">
+            <caption>
+              Consumidores das marcas
+            </caption>
+            <tr>
+              <td>
+                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              </td>
+              <td>
+                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+              </td>
+              <td>
+                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+              </td>
+              <td>
+                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
+              </td>
+              <td>
+                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
+              </td>
+              <td class="text-center">
+                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) P(A u B) = P(A) + P(B) - P(A i B) 
+
+          b) P(A i C i B') = P(A i C) - P(A i B i C)
+
+          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+
+          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+
+          e) P((A u B u C)') = 1 - P(A u B u C)
+        </py-repl>
+      </div>
+      <table class="mb-4">
+        <tr>
+          <th>Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around mt-8">
+            <p>a) P(A u B) =<span id="1_9_a">0</span></p>
+            <p>b) P(A i C i B') =<span id="1_9_b">0</span></p>
+            <p>c) P(C i A' i B') =<span id="1_9_c">0</span></p>
+            <p>d) P(A u B u C) =<span id="1_9_d">0</span></p>
+            <p>e) P((A u B u C)') =<span id="1_9_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="7_11" class="hidden m-4 flex-col">
+      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
+        <img class="h-[50%] w-[50%] self-center" src="./7_11.png" alt="exercicio" />
+      </div>
+      <div class="flex justify-evenly items-center m-8">
+        <!-- Tabela de valores -->
+        <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="table-auto">
+            <caption>
+              Consumidores das marcas
+            </caption>
+            <tr>
+              <td>
+                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              </td>
+              <td>
+                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+              </td>
+              <td>
+                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+              </td>
+              <td>
+                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
+              </td>
+              <td>
+                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
+              </td>
+              <td class="text-center">
+                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <py-repl>
+          a) P(A u B) = P(A) + P(B) - P(A i B) 
+
+          b) P(A i C i B') = P(A i C) - P(A i B i C)
+
+          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+
+          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+
+          e) P((A u B u C)') = 1 - P(A u B u C)
+        </py-repl>
+      </div>
+      <table class="mb-4">
+        <tr>
+          <th>Resultados</th>
+        </tr>
+        <tr>
+          <td class="flex gap-4 justify-around mt-8">
+            <p>a) P(A u B) =<span id="1_9_a">0</span></p>
+            <p>b) P(A i C i B') =<span id="1_9_b">0</span></p>
+            <p>c) P(C i A' i B') =<span id="1_9_c">0</span></p>
+            <p>d) P(A u B u C) =<span id="1_9_d">0</span></p>
+            <p>e) P((A u B u C)') =<span id="1_9_e">0</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="output_venn"></div>
+    <script type="py">
+      from js import document
+      import matplotlib.pyplot as plt
+      import scipy
+      from scipy.stats import binom, poisson
+      import numpy as np
+
+      def Binomial(n, p, k):
+          probability = binom.pmf(k, n, p)
+          return probability
+
+      def Poisson(k, lambd):
+          probability = poisson.pmf(k, lambd)
+          return probability
+
+      def Elementos_de_probabilidades():
+          document.getElementById("title").style.display = "none"
+          document.getElementById("buttons1").style.display = "none"
+          document.getElementById("buttons2").style.display = "none"
+          document.getElementById("exercicios1").style.display = "flex"
+          document.getElementById("voltar").style.display = "flex"
+
+      def show1_9():
+          document.getElementById("1_9").style.display = "flex"
+          document.getElementById("1_13").style.display = "none"
+          document.getElementById("1_26").style.display = "none"
+
+      def umPontoNove():
+          p_A = float(document.getElementById("1_9_p_A").value) / 100
+          p_B = float(document.getElementById("1_9_p_B").value) / 100
+          p_C = float(document.getElementById("1_9_p_C").value) / 100
+          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
+          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
+          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
+          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+
+          p_AuB = p_A + p_B - p_AiB
+          p_AiCiBn = p_AiC - p_AiBiC
+          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC_n = 1 - p_AuBuC
+
+          values = {
+              "1_9_a": format(p_AuB, '.4f'),
+              "1_9_b": format(p_AiCiBn, '.4f'),
+              "1_9_c": format(p_CiAniBn, '.4f'),
+              "1_9_d": format(p_AuBuC, '.4f'),
+              "1_9_e": format(p_AuBuC_n, '.4f')
+          }
+
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+        
+      def show1_13():
+          document.getElementById("1_13").style.display = "flex"
+          document.getElementById("1_9").style.display = "none"
+          document.getElementById("1_26").style.display = "none"
+
+      def umPontoTreze():
+          p_A = float(document.getElementById("1_13_p_A").value)
+          p_AuB = float(document.getElementById("1_13_p_AuB").value)
+          p_A_B_1 = float(document.getElementById("1_13_p_A_B_1").value)
+          p_A_B_2 = float(document.getElementById("1_13_p_A_B_2").value)
+
+          p = 1 - p_A
+          p_B_1 = (p_AuB - p_A) / p
+          p_B_2 = p_AuB - p_A
+          p_B_3 = (p_A - p_AuB) / (p_A_B_1 - 1)
+          p_B_4 = (p_A - p_AuB) / (p_A_B_2 - 1)
+    
+          values = {
+              "1_13_a": format(p_B_1, '.4f'),
+              "1_13_b": format(p_B_2, '.4f'),
+              "1_13_c1": format(p_B_3, '.4f'),
+              "1_13_c2": format(p_B_4, '.4f')
+          }
+    
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+
+      def show1_26():
+          document.getElementById("1_26").style.display = "flex"
+          document.getElementById("1_9").style.display = "none"
+          document.getElementById("1_13").style.display = "none"
+
+      def umPontoVinteSeis():
+          p_D = float(document.getElementById("1_26_p_D").value)
+          p_T_D = float(document.getElementById("1_26_p_T_D").value)
+          p_T_Dn = float(document.getElementById("1_26_p_T_Dn").value)
+    
+          p_DiT = p_T_D * p_D
+          p_T = p_T_D * p_D + p_T_Dn * (1 - p_D)
+          p_D_T = p_DiT / p_T
+          p_D_Tn = (p_D - p_DiT) / (1 - p_T)
+          p_Dn_Tn = 1 - p_D_Tn
+          p_TniD = (1 - p_T_D) * p_D
+    
+          values = {
+              "1_26_a": format(p_D_T, '.4f'),
+              "1_26_b": format(p_Dn_Tn, '.4f'),
+              "1_26_c": format(p_TniD, '.4f')
+          }
+    
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+
+      def Variaveis_aleatorias():
+          document.getElementById("title").style.display = "none"
+          document.getElementById("buttons1").style.display = "none"
+          document.getElementById("buttons2").style.display = "none"
+          document.getElementById("exercicios2").style.display = "flex"
+          document.getElementById("voltar").style.display = "flex"
+
+      def exercicios2_1():
+          document.getElementById("exercicios2_1").style.display = "flex"
+          document.getElementById("exercicios2_2").style.display = "none"
+          document.getElementById("2_16").style.display = "none"
+          document.getElementById("2_11").style.display = "none"
+      
+      def show2_1():
+          document.getElementById("2_1").style.display = "flex"
+          document.getElementById("2_7").style.display = "none"
+
+      def doisPontoUm():
+          x_0 = float(document.getElementById("2_1_x_0").value)
+          x_1 = float(document.getElementById("2_1_x_1").value)
+          x_2 = float(document.getElementById("2_1_x_2").value)
+          x_3 = float(document.getElementById("2_1_x_3").value)
+          f_0 = float(document.getElementById("2_1_f_0").value)
+          f_1 = float(document.getElementById("2_1_f_1").value)
+          f_2 = float(document.getElementById("2_1_f_2").value)
+          f_3 = float(document.getElementById("2_1_f_3").value)
+
+          fig, ax1 = plt.subplots()
+
+          valores = [x_0, x_1, x_2, x_3]
+          probabilidades = [f_0, f_1, f_2, f_3]
+          
+          ax1.scatter(valores, probabilidades, color='#00bcd4', marker='o')
+          
+          ax1.set_xlabel('Valores')  # Use set_xlabel instead of xlabel
+          ax1.set_ylabel('Probabilidades')  # Use set_ylabel instead of ylabel
+          ax1.set_title('Função de Probabilidade Discreta')  # Use set_title instead of title
+          
+          display(fig, target="plot1")
+    
+
+          F_0 = f_0
+          F_1 = F_0 + f_1
+          F_2 = F_1 + f_2
+          F_3 = F_2 + f_3
+
+          e = sum(x * f for x, f in zip(valores, probabilidades))
+          e2 = sum(x**2 * f for x, f in zip(valores, probabilidades))
+          v = e2 - e**2
+    
+          values = {
+              "2_1_X_0": x_0,
+              "2_1_X_1": x_1,
+              "2_1_X1_1": x_1,
+              "2_1_X_2": x_2,
+              "2_1_X1_2": x_2,
+              "2_1_X_3": x_3,
+              "2_1_X1_3": x_3,
+              "2_1_F_0": F_0,
+              "2_1_F_1": F_1,
+              "2_1_F_2": F_2,
+              "2_1_F_3": F_3,
+              "2_1_d": F_2,
+              "2_1_e1": format(e, '.4f'),
+              "2_1_e2": format(v, '.4f')
+          }
+    
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+
+      def show2_7():
+          document.getElementById("2_7").style.display = "flex"
+          document.getElementById("2_1").style.display = "none"
+
+      def doisPontoSete():
+          x_0 = float(document.getElementById("2_1_x_0").value)
+          x_1 = float(document.getElementById("2_1_x_1").value)
+          x_2 = float(document.getElementById("2_1_x_2").value)
+          x_3 = float(document.getElementById("2_1_x_3").value)
+          f_0 = float(document.getElementById("2_1_f_0").value)
+          f_1 = float(document.getElementById("2_1_f_1").value)
+          f_2 = float(document.getElementById("2_1_f_2").value)
+          f_3 = float(document.getElementById("2_1_f_3").value)
+
+          F_0 = f_0
+          F_1 = F_0 + f_1
+          F_2 = F_1 + f_2
+          F_3 = F_2 + f_3
+
+          valores = [x_0, x_1, x_2, x_3]
+          probabilidades = [f_0, f_1, f_2, f_3]
+
+          plt.bar(valores, probabilidades, align='center', alpha=0.7)
+
+          plt.xlabel('Valores')
+          plt.ylabel('Probabilidades')
+          plt.title('Função de Probabilidade Discreta')
+
+          e = sum(x * f for x, f in zip(valores, probabilidades))
+          e2 = sum(x**2 * f for x, f in zip(valores, probabilidades))
+          v = e2 - e**2
+    
+          values = {
+              "2_1_X_0": x_0,
+              "2_1_X_1": x_1,
+              "2_1_X1_1": x_1,
+              "2_1_X_2": x_2,
+              "2_1_X1_2": x_2,
+              "2_1_X_3": x_3,
+              "2_1_X1_3": x_3,
+              "2_1_F_0": F_0,
+              "2_1_F_1": F_1,
+              "2_1_F_2": F_2,
+              "2_1_F_3": F_3,
+              "2_1_d": F_2,
+              "2_1_e1": format(e, '.4f'),
+              "2_1_e2": format(v, '.4f')
+          }
+    
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+
+      def exercicios2_2():
+          document.getElementById("exercicios2_1").style.display = "none"
+          document.getElementById("exercicios2_2").style.display = "flex"
+          document.getElementById("2_1").style.display = "none"
+          document.getElementById("2_7").style.display = "none"   
+          
+      def show2_16():
+          document.getElementById("2_16").style.display = "flex"
+          document.getElementById("2_11").style.display = "none"
+
+      def doisPontoDezesseis():
+          #Aqui vamos buscar os valores dos inputs.
+          p_A = float(document.getElementById("1_9_p_A").value) / 100
+          p_B = float(document.getElementById("1_9_p_B").value) / 100
+          p_C = float(document.getElementById("1_9_p_C").value) / 100
+          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
+          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
+          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
+          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+
+          #Contas da Team leader
+          p_AuB = p_A + p_B - p_AiB
+          p_AiCiBn = p_AiC - p_AiBiC
+          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC_n = 1 - p_AuBuC
+
+          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          values = {
+              "1_9_a": format(p_AuB, '.4f'),
+              "1_9_b": format(p_AiCiBn, '.4f'),
+              "1_9_c": format(p_CiAniBn, '.4f'),
+              "1_9_d": format(p_AuBuC, '.4f'),
+              "1_9_e": format(p_AuBuC_n, '.4f')
+          }
+
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+      
+      def show2_11():
+          document.getElementById("2_11").style.display = "flex"
+          document.getElementById("2_16").style.display = "none"
+    
+      def doisPontoOnze():
+          #Aqui vamos buscar os valores dos inputs.
+          p_A = float(document.getElementById("1_9_p_A").value) / 100
+          p_B = float(document.getElementById("1_9_p_B").value) / 100
+          p_C = float(document.getElementById("1_9_p_C").value) / 100
+          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
+          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
+          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
+          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+    
+          #Contas da Team leader
+          p_AuB = p_A + p_B - p_AiB
+          p_AiCiBn = p_AiC - p_AiBiC
+          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC_n = 1 - p_AuBuC
+    
+          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          values = {
+              "1_9_a": format(p_AuB, '.4f'),
+              "1_9_b": format(p_AiCiBn, '.4f'),
+              "1_9_c": format(p_CiAniBn, '.4f'),
+              "1_9_d": format(p_AuBuC, '.4f'),
+              "1_9_e": format(p_AuBuC_n, '.4f')
+          }
+    
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+
+      def Algumas_distribuicoes_probabilidade():
+          document.getElementById("title").style.display = "none"
+          document.getElementById("buttons1").style.display = "none"
+          document.getElementById("buttons2").style.display = "none"
+          document.getElementById("exercicios3").style.display = "flex"
+          document.getElementById("voltar").style.display = "flex"
+
+      def show3_1():
+          document.getElementById("3_1").style.display = "flex"
+          document.getElementById("3_9").style.display = "none"
+
+      def tresPontoUm():
+          n = float(document.getElementById("3_1_n").value)
+          p = float(document.getElementById("3_1_p").value)
+
+          p_xi2 = Binomial(n,p,2)
+          p_xmini2 = Binomial(n,p,0) + Binomial(n,p,1) + Binomial(n,p,2)
+          p_xmaxi2 = 1 - (Binomial(n,p,0) + Binomial(n,p,1))
+          p_xi6 = Binomial(n,p,6)
+          p_xi0 = Binomial(n,p,0)
+
+          values = {
+              "3_1_a": format(p_xi2, '.4f'),
+              "3_1_b": format(p_xmini2, '.4f'),
+              "3_1_c": format(p_xmaxi2, '.4f'),
+              "3_1_d": format(p_xi6, '.4f'),
+              "3_1_e": format(p_xi0, '.4f')
+          }
+
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+      
+      def show3_9():
+          document.getElementById("3_9").style.display = "flex"
+          document.getElementById("3_1").style.display = "none"
+    
+      def tresPontoNove():
+          lambd = float(document.getElementById("3_9_lambda").value)
+
+          p_xi8 = Poisson(8,lambd) - Poisson(7,lambd)
+          p_xmin5 = Poisson(4,lambd)
+          p_xmaxi3 = 1 - Poisson(2,lambd)
+          p_xmaxi20 = 1 - Poisson(19,lambd)
+          p_xi0 = Poisson(0,lambd)
+          p_yi3 = Poisson(3,4) - Poisson(2,4)
+
+          values = {
+              "3_9_a": format(p_xi8, '.4f'),
+              "3_9_b": format(p_xmin5, '.4f'),
+              "3_9_c": format(p_xmaxi3, '.4f'),
+              "3_9_d": format(p_xmaxi20, '.4f'),
+              "3_9_e": format(p_xi0, '.4f'),
+              "3_9_f": format(p_yi3, '.4f')
+          }
+    
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+
+      def Estimacao_parametros():
+          #Esta função serve para esconder o resto das coisas quando clicamos no  Calculo de Probabilidades.
+          document.getElementById("title").style.display = "none"
+          document.getElementById("buttons1").style.display = "none"
+          document.getElementById("buttons2").style.display = "none"
+          document.getElementById("exercicios5").style.display = "flex"
+          document.getElementById("voltar").style.display = "flex"
+
+      def show5_7():
+          document.getElementById("5_7").style.display = "flex"
+          document.getElementById("5_11").style.display = "none"
+
+      def cincoPontoSete():
+          #Aqui vamos buscar os valores dos inputs.
+          p_A = float(document.getElementById("1_9_p_A").value) / 100
+          p_B = float(document.getElementById("1_9_p_B").value) / 100
+          p_C = float(document.getElementById("1_9_p_C").value) / 100
+          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
+          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
+          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
+          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+
+          #Contas da Team leader
+          p_AuB = p_A + p_B - p_AiB
+          p_AiCiBn = p_AiC - p_AiBiC
+          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC_n = 1 - p_AuBuC
+
+          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          values = {
+              "1_9_a": format(p_AuB, '.4f'),
+              "1_9_b": format(p_AiCiBn, '.4f'),
+              "1_9_c": format(p_CiAniBn, '.4f'),
+              "1_9_d": format(p_AuBuC, '.4f'),
+              "1_9_e": format(p_AuBuC_n, '.4f')
+          }
+
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+      
+      def show5_11():
+          document.getElementById("5_11").style.display = "flex"
+          document.getElementById("5_7").style.display = "none"
+    
+      def cincoPontoOnze():
+          #Aqui vamos buscar os valores dos inputs.
+          p_A = float(document.getElementById("1_9_p_A").value) / 100
+          p_B = float(document.getElementById("1_9_p_B").value) / 100
+          p_C = float(document.getElementById("1_9_p_C").value) / 100
+          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
+          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
+          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
+          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+    
+          #Contas da Team leader
+          p_AuB = p_A + p_B - p_AiB
+          p_AiCiBn = p_AiC - p_AiBiC
+          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC_n = 1 - p_AuBuC
+    
+          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          values = {
+              "1_9_a": format(p_AuB, '.4f'),
+              "1_9_b": format(p_AiCiBn, '.4f'),
+              "1_9_c": format(p_CiAniBn, '.4f'),
+              "1_9_d": format(p_AuBuC, '.4f'),
+              "1_9_e": format(p_AuBuC_n, '.4f')
+          }
+    
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+
+      def Testes_hipoteses():
+          #Esta função serve para esconder o resto das coisas quando clicamos no  Calculo de Probabilidades.
+          document.getElementById("title").style.display = "none"
+          document.getElementById("buttons1").style.display = "none"
+          document.getElementById("buttons2").style.display = "none"
+          document.getElementById("exercicios6").style.display = "flex"
+          document.getElementById("voltar").style.display = "flex"
+
+      def show6_2():
+          document.getElementById("6_2").style.display = "flex"
+          document.getElementById("6_4").style.display = "none"
+
+      def seisPontoDois():
+          #Aqui vamos buscar os valores dos inputs.
+          p_A = float(document.getElementById("1_9_p_A").value) / 100
+          p_B = float(document.getElementById("1_9_p_B").value) / 100
+          p_C = float(document.getElementById("1_9_p_C").value) / 100
+          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
+          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
+          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
+          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+
+          #Contas da Team leader
+          p_AuB = p_A + p_B - p_AiB
+          p_AiCiBn = p_AiC - p_AiBiC
+          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC_n = 1 - p_AuBuC
+
+          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          values = {
+              "1_9_a": format(p_AuB, '.4f'),
+              "1_9_b": format(p_AiCiBn, '.4f'),
+              "1_9_c": format(p_CiAniBn, '.4f'),
+              "1_9_d": format(p_AuBuC, '.4f'),
+              "1_9_e": format(p_AuBuC_n, '.4f')
+          }
+
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+      
+      def show6_4():
+          document.getElementById("6_4").style.display = "flex"
+          document.getElementById("6_2").style.display = "none"
+    
+      def seisPontoQuatro():
+          #Aqui vamos buscar os valores dos inputs.
+          p_A = float(document.getElementById("1_9_p_A").value) / 100
+          p_B = float(document.getElementById("1_9_p_B").value) / 100
+          p_C = float(document.getElementById("1_9_p_C").value) / 100
+          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
+          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
+          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
+          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+    
+          #Contas da Team leader
+          p_AuB = p_A + p_B - p_AiB
+          p_AiCiBn = p_AiC - p_AiBiC
+          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC_n = 1 - p_AuBuC
+    
+          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          values = {
+              "1_9_a": format(p_AuB, '.4f'),
+              "1_9_b": format(p_AiCiBn, '.4f'),
+              "1_9_c": format(p_CiAniBn, '.4f'),
+              "1_9_d": format(p_AuBuC, '.4f'),
+              "1_9_e": format(p_AuBuC_n, '.4f')
+          }
+    
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+
+      def Correlacao_regressao():
+          #Esta função serve para esconder o resto das coisas quando clicamos no  Calculo de Probabilidades.
+          document.getElementById("title").style.display = "none"
+          document.getElementById("buttons1").style.display = "none"
+          document.getElementById("buttons2").style.display = "none"
+          document.getElementById("exercicios7").style.display = "flex"
+          document.getElementById("voltar").style.display = "flex"
+
+      def show7_9():
+          document.getElementById("7_9").style.display = "flex"
+          document.getElementById("7_11").style.display = "none"
+
+      def setePontoNove():
+          #Aqui vamos buscar os valores dos inputs.
+          p_A = float(document.getElementById("1_9_p_A").value) / 100
+          p_B = float(document.getElementById("1_9_p_B").value) / 100
+          p_C = float(document.getElementById("1_9_p_C").value) / 100
+          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
+          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
+          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
+          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+
+          #Contas da Team leader
+          p_AuB = p_A + p_B - p_AiB
+          p_AiCiBn = p_AiC - p_AiBiC
+          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC_n = 1 - p_AuBuC
+
+          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          values = {
+              "1_9_a": format(p_AuB, '.4f'),
+              "1_9_b": format(p_AiCiBn, '.4f'),
+              "1_9_c": format(p_CiAniBn, '.4f'),
+              "1_9_d": format(p_AuBuC, '.4f'),
+              "1_9_e": format(p_AuBuC_n, '.4f')
+          }
+
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+      
+      def show7_11():
+          document.getElementById("7_11").style.display = "flex"
+          document.getElementById("7_9").style.display = "none"
+    
+      def setePontoOnze():
+          #Aqui vamos buscar os valores dos inputs.
+          p_A = float(document.getElementById("1_9_p_A").value) / 100
+          p_B = float(document.getElementById("1_9_p_B").value) / 100
+          p_C = float(document.getElementById("1_9_p_C").value) / 100
+          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
+          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
+          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
+          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+    
+          #Contas da Team leader
+          p_AuB = p_A + p_B - p_AiB
+          p_AiCiBn = p_AiC - p_AiBiC
+          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
+          p_AuBuC_n = 1 - p_AuBuC
+    
+          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          values = {
+              "1_9_a": format(p_AuB, '.4f'),
+              "1_9_b": format(p_AiCiBn, '.4f'),
+              "1_9_c": format(p_CiAniBn, '.4f'),
+              "1_9_d": format(p_AuBuC, '.4f'),
+              "1_9_e": format(p_AuBuC_n, '.4f')
+          }
+    
+          for key, value in values.items():
+              document.getElementById(key).innerHTML = value
+
+      def voltar():
+          #Esta função serve para esconder os exercicios e mostra o menu
+          document.getElementById("exercicios1").style.display = "none"
+          document.getElementById("1_9").style.display = "none"
+          document.getElementById("1_13").style.display = "none"
+          document.getElementById("1_26").style.display = "none"
+          document.getElementById("exercicios2").style.display = "none"
+          document.getElementById("exercicios2_1").style.display = "none"
+          document.getElementById("2_1").style.display = "none"
+          document.getElementById("2_7").style.display = "none"
+          document.getElementById("exercicios2_2").style.display = "none"
+          document.getElementById("2_16").style.display = "none"
+          document.getElementById("2_11").style.display = "none"
+          document.getElementById("exercicios3").style.display = "none"
+          document.getElementById("3_1").style.display = "none"
+          document.getElementById("3_9").style.display = "none"
+          document.getElementById("exercicios5").style.display = "none"
+          document.getElementById("5_7").style.display = "none"
+          document.getElementById("5_11").style.display = "none"
+          document.getElementById("exercicios6").style.display = "none"
+          document.getElementById("6_2").style.display = "none"
+          document.getElementById("6_4").style.display = "none"
+          document.getElementById("exercicios7").style.display = "none"
+          document.getElementById("7_9").style.display = "none"
+          document.getElementById("7_11").style.display = "none"
+          document.getElementById("voltar").style.display = "none"
+          document.getElementById("title").style.display = "flex"
+          document.getElementById("buttons1").style.display = "flex"
+          document.getElementById("buttons2").style.display = "flex"
+    </script>
+  </body>
+</html>
