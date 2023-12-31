@@ -501,6 +501,49 @@
       <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
         <img class="h-[50%] w-[50%] self-center" src="./2_16.png" alt="exercicio" />
       </div>
+      <py-repl>
+        a)   valores = np.linspace(-2, 4, 400)
+        probabilidades = [pdf(x) for x in valores]
+
+        fig, ax1 = plt.subplots()
+        ax1.scatter(valores, probabilidades, color='#00bcd4', marker='o')
+        ax1.set_xlabel('Valores')
+        ax1.set_ylabel('Probabilidades')
+        ax1.set_title('Função Densidade de Probabilidade')
+        ax1.axhline(0, color='black', linewidth=0.5)
+        ax1.axvline(0, color='black', linewidth=0.5)
+        ax1.grid(color='gray', linestyle='--', linewidth=0.5)
+
+        display(fig, target="plot3")
+
+        b)
+        # Calcular F(x) para x = 2
+        F_2 = cdf(2)
+
+        # Calcular F(x) para x = 1/2
+        F_half = cdf(1/2)
+
+        # Calcular P(1/2 < X < 2)
+        P_half_to_2 = cdf(2) - cdf(1/2)
+
+        response = 'O caluco de F(x) e P(1/2 < x < 2) será respetivamente: {} e {}.'.format(F_2, P_half_to_2)
+
+      </py-repl>
+      <button py-click="doisPontoDezesseis()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
+      <div class="flex justify-around">
+        <div class="flex flex-col items-center mt-2">
+          <label for="plot3"> a) Represente graficamente e verifique que se trata de uma função densidade de probabilidade.</label>
+          <div id="plot3"></div>
+        </div>
+        <div class="flex flex-col items-center justify-center mt-2">
+          <label for="2_16_b">
+            b) Calcule F(x) e P(1/2 < X < 2)
+          </label>
+          <div id="2_16_b">
+            A resposta a alinea b irá encontrar - se neste espaço assim que clicar em "Resolver".
+          </div>
+        </div>
+      </div>
     </div>
     <div id="exercicios3" class="hidden flex-row justify-center items-center h-28 w-full">
       <button py-click="show3_1()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
@@ -1107,36 +1150,6 @@
       import numpy as np
       import math
 
-      def mediana(x, f):
-          dados = [valor for valor, frequencia in zip(x, f) for _ in range(frequencia)]
-          dados.sort()
-          n = sum(f)
-          if n % 2 == 0:
-              mediana = (dados[n // 2 - 1] + dados[n // 2]) / 2
-          else:
-              mediana = dados[n // 2]
-          return mediana
-
-      def moda(x, f):
-          dados = dict(zip(x, f))
-          moda = max(dados, key=dados.get)
-          return moda
-
-      def quartis(x, f):
-          dados = [valor for valor, frequencia in zip(x, f) for _ in range(frequencia)]
-          dados.sort()
-          n = sum(f)
-          q2 = mediana(x, f)
-          if n % 2 == 0:
-              q1 = mediana(dados[:n//2], f[:len(f)//2])
-          else:
-              q1 = mediana(dados[:n//2], f[:len(f)//2 + 1])
-          if n % 2 == 0:
-              q3 = mediana(dados[n//2:], f[len(f)//2:])
-          else:
-              q3 = mediana(dados[n//2 + 1:], f[len(f)//2 + 1:])
-          return q1, q2, q3
-
       def Binomial(n, p, k):
           probability = binom.pmf(k, n, p)
           return probability
@@ -1283,6 +1296,9 @@
           ax1.set_xlabel('Valores')
           ax1.set_ylabel('Probabilidades')
           ax1.set_title('Função de Probabilidade Discreta')
+          
+          document.getElementById("plot1").innerHTML = ""
+
           display(fig, target="plot1")
     
           F_0 = f_0
@@ -1305,6 +1321,9 @@
           ax2.set_xlabel('Valores')
           ax2.set_ylabel('Probabilidades')
           ax2.set_title('Função de Probabilidade Discreta')
+
+          document.getElementById("plot2").innerHTML = ""
+
           display(fig2, target="plot2")
 
           e = sum(x * f for x, f in zip(valores, probabilidades))
@@ -1401,6 +1420,57 @@
           
       def show2_16():
           document.getElementById("2_16").style.display = "flex"
+      
+      def pdf(x):
+          if -1 <= x < 0:
+              return x**2
+          elif 0 <= x < 1:
+              return 0
+          elif 1 <= x < 3:
+              return 1/12
+          else:
+              return 0
+        
+      def cdf(x):
+          if x < -1:
+               return 0
+          elif -1 <= x < 0:
+               return (x**3)/3
+          elif 0 <= x < 1:
+               return 0
+          elif 1 <= x < 3:
+               return (1/12)*(x**2) + 1/3
+          else:
+               return 1     
+
+      def doisPontoDezesseis():
+        valores = np.linspace(-2, 4, 400)
+        probabilidades = [pdf(x) for x in valores]
+
+        fig, ax1 = plt.subplots()
+        ax1.scatter(valores, probabilidades, color='#00bcd4', marker='o')
+        ax1.set_xlabel('Valores')
+        ax1.set_ylabel('Probabilidades')
+        ax1.set_title('Função Densidade de Probabilidade')
+        ax1.axhline(0, color='black', linewidth=0.5)
+        ax1.axvline(0, color='black', linewidth=0.5)
+        ax1.grid(color='gray', linestyle='--', linewidth=0.5)
+
+        document.getElementById("plot3").innerHTML =  ""
+
+        display(fig, target="plot3")
+
+        # Calcular F(x) para x = 2
+        F_2 = cdf(2)
+
+        # Calcular F(x) para x = 1/2
+        F_half = cdf(1/2)
+
+        # Calcular P(1/2 < X < 2)
+        P_half_to_2 = cdf(2) - cdf(1/2)
+
+        response = 'O cálculo de F(x) e P(1/2 < x < 2) será respectivamente: {:.4f} e {:.4f}.'.format(F_2, P_half_to_2)
+        document.getElementById("2_16_b").innerHTML =  response
 
       def show2_11():
           document.getElementById("2_11").style.display = "flex"
