@@ -305,8 +305,8 @@
 
              P(X <= 2) = F(2)
 
-          e) E(X) = Σ xi * f(xi)
-             E(X^2) = Σ xi^2 * f(xi)
+          e) E(X) = Σxi * f(xi)
+             E(X^2) = Σxi^2 * f(xi)
              V(X) = E(X^2) * (E(X))^2
         </py-repl>
         <div class="flex justify-evenly items-center m-8">
@@ -349,6 +349,7 @@
                 </td>
               </tr>
             </table>
+            <div id="plot1"></div>
           </div>
           <div class="relative overflow-x-auto sm:rounded-lg">
             <table class="font-mono border table-auto text-center">
@@ -374,7 +375,7 @@
                 <td><p><span id="2_1_F_3">0</span>     se      x >= <span id="2_1_X1_3">0</span></p></td>               
               </tr>
               <tr>
-                <td><div id="plot1"></div></td>               
+                <td><div id="plot2"></div></td>               
               </tr>
             </table>
             
@@ -456,18 +457,18 @@
               </tr>
             </table>
             <py-repl>
-              a) μ = E(X) = Σ xi * f(xi)
-                 Mo =
-                 Me =
+              a) μ = E(X) = Σxi * f(xi)
+                 Mo = A moda é o valor da variável que apresenta maior probabilidade.
+                 Me = P(X <= Q2/4(X)) >= 0,50
 
-              b) E(X^2) = Σ xi^2 * f(xi)
+              b) E(X^2) = Σxi^2 * f(xi)
                  V(X) = E(X^2) * (E(X))^2
                  σx = √(V(X))
 
-              c)
+              c) A distribuição não é simétrica (é assimétrica positiva, Mo < Me < μ).
 
-              d) Q1 =
-                 Q3 =
+              d) Q1 = P(X <= Q1/4(X)) >= 0,25
+                 Q3 = P(X <= Q3/4(X)) >= 0,75
             </py-repl>
           </div>
       </div>
@@ -477,158 +478,29 @@
         </tr>
         <tr>
           <td class="flex gap-4 justify-around">
-            <p>d) P(X <= 2) = <span id="2_1_d">0</span></p>
-            <p>e) E(X) = <span id="2_1_e1">0</span></p>
-            <p>V(X) = <span id="2_1_e2">0</span></p>
+            <p>a) μ = <span id="2_7_a1">0</span></p>
+            <p>Mo = <span id="2_7_a2">0</span></p>
+            <p>Me = <span id="2_7_a3">0</span></p>
+            <p>b) V(X) = <span id="2_7_b1">0</span></p>
+            <p>σx = <span id="2_7_b2">0</span></p>
+            <p>d) Q1 = <span id="2_7_d1">0</span></p>
+            <p>Q3 = <span id="2_7_d2">0</span></p>
           </td>
         </tr>
       </table>
+      <div id="2_7_C" class="flex justify-center items-center w-full my-2">
+        C)
+      </div>
     </div>
     <div id="exercicios2_2" class="hidden flex-row justify-center items-center h-28 w-full">
       <button py-click="show2_16()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
         2.16
-      </button>
-      <button py-click="show2_11()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
-        2.
       </button>
     </div>
     <div id="2_16" class="hidden m-4 flex-col">
       <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
         <img class="h-[50%] w-[50%] self-center" src="./2_16.png" alt="exercicio" />
       </div>
-      <div class="flex justify-evenly items-center m-8">
-        <div class="relative overflow-x-auto sm:rounded-lg">
-          <table class="table-auto">
-            <caption>
-              Consumidores das marcas
-            </caption>
-            <tr>
-              <td>
-                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
-              </td>
-              <td>
-                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
-              </td>
-              <td>
-                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
-              </td>
-              <td>
-                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
-              </td>
-              <td>
-                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
-              </td>
-              <td class="text-center">
-                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <py-repl>
-          a) P(A u B) = P(A) + P(B) - P(A i B) 
-
-          b) P(A i C i B') = P(A i C) - P(A i B i C)
-
-          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
-
-          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
-
-          e) P((A u B u C)') = 1 - P(A u B u C)
-        </py-repl>
-      </div>
-      <table class="mb-4">
-        <tr>
-          <th>Resultados</th>
-        </tr>
-        <tr>
-          <td class="flex gap-4 justify-around mt-8">
-            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
-            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
-            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
-            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
-            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div id="2_11" class="hidden m-4 flex-col">
-      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
-        <img class="h-[50%] w-[50%] self-center" src="./2_11.png" alt="exercicio" />
-      </div>
-      <div class="flex justify-evenly items-center m-8">
-        <div class="relative overflow-x-auto sm:rounded-lg">
-          <table class="table-auto">
-            <caption>
-              Consumidores das marcas
-            </caption>
-            <tr>
-              <td>
-                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
-              </td>
-              <td>
-                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
-              </td>
-              <td>
-                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
-              </td>
-              <td>
-                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
-              </td>
-              <td>
-                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
-              </td>
-              <td class="text-center">
-                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <py-repl>
-          a) P(A u B) = P(A) + P(B) - P(A i B) 
-
-          b) P(A i C i B') = P(A i C) - P(A i B i C)
-
-          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
-
-          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
-
-          e) P((A u B u C)') = 1 - P(A u B u C)
-        </py-repl>
-      </div>
-      <table class="mb-4">
-        <tr>
-          <th>Resultados</th>
-        </tr>
-        <tr>
-          <td class="flex gap-4 justify-around mt-8">
-            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
-            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
-            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
-            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
-            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
-          </td>
-        </tr>
-      </table>
     </div>
     <div id="exercicios3" class="hidden flex-row justify-center items-center h-28 w-full">
       <button py-click="show3_1()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
@@ -749,7 +621,7 @@
             <p>c) P(X >= 3) = <span id="3_9_c">0</span></p>
             <p>d) P(X >= 20) = <span id="3_9_d">0</span></p>
             <p>e) P(X = 0) = <span id="3_9_e">0</span></p>
-            <p>f) P(X = 3) = <span id="3_9_f">0</span></p>
+            <p>f) P(Y = 3) = <span id="3_9_f">0</span></p>
           </td>
         </tr>
       </table>
@@ -785,7 +657,7 @@
             </tr>
             <tr>
               <td class="text-right">
-                1 - α: <input class="text-center" id="5_7_ummenosalfa" type="number" value="0.99" />
+                x: <input class="text-center" id="5_7_x" type="number" value="0.99" />
               </td>
               <td class="text-right">
                 erro <= <input class="text-center" id="5_7_erro" type="number" value="5" />
@@ -802,21 +674,30 @@
           </table>
         </div>
         <py-repl>
-          μ = E(X) = Σ xi * f(xi)
-                 Mo =
-                 Me =
-              b) E(X^2) = Σ xi^2 * f(xi)
-                 V(X) = E(X^2) * (E(X))^2
-                 σ
-          a) P(A u B) = P(A) + P(B) - P(A i B) 
+          X -> tempo, em minutos,de resolução de um determinado teste
+          X ~ N(μ, σ^2 = 14^2)
+          (População Normal, σ^2 conhecida)
+          Amostra: n = 12 (tamanho da amostra)
 
-          b) P(A i C i B') = P(A i C) - P(A i B i C)
+          a) 1 - α = x <=> α = -x + 1 <=> α/2 = (-x + 1)/2 <=> 1 - α/2 = 1 - (-x + 1)/2
+          Φ^-1(1 - α/2)
+          IC99%(μ) = [x̅ - Φ^-1(1 - α/2)*(σ/√n); x̅ + Φ^-1(1 - α/2)*(σ/√n)]
 
-          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+          b) I = x̅ + Φ^-1(1 - α/2)*(σ/√n) - (x̅ - Φ^-1(1 - α/2)*(σ/√n)) =
+          = Φ^-1(1 - α/2)*(σ/√n) + Φ^-1(1 - α/2)*(σ/√n) =
+          = 2 * Φ^-1(1 - α/2)*(σ/√n)
+          n* -> dimensão da nova amostra
+          n* > n => √n* > √n => 1/√n* < 1/√n <=>
+          <=> (2 * Φ^-1(1 - α/2)*σ)/√n* < (2 * Φ^-1(1 - α/2)*σ)/√n
+                            ⇓                           ⇓
+                            I*                          I
+          Ao aumentar o n, diminui a amplitude do intervalo de confiança.
 
-          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
+          c) Φ^-1(1 - α/2)*(σ/√n) <= erro <=>
+          <=> n >= ((Φ^-1(1 - α/2) * σ)/erro)^2 (arredondar para maior)
 
-          e) P((A u B u C)') = 1 - P(A u B u C)
+          d) S' = σ da d
+          IC99%(μ) = [x̅ - t(n - 1, 1 - α/2) * (S'/√n); x̅ + t(n - 1, 1 - α/2) * (S'/√n)]
         </py-repl>
       </div>
       <table class="font-mono mb-4">
@@ -825,11 +706,9 @@
         </tr>
         <tr>
           <td class="flex gap-4 justify-around">
-            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
-            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
-            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
-            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
-            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
+            <p>a) IC99%(μ) = [<span id="5_7_a1">0</span>; <span id="5_7_a2">0</span>]</p>
+            <p>c) n >= <span id="5_7_c">0</span></p>
+            <p>d) IC99%(μ) = [<span id="5_7_d1">0</span>; <span id="5_7_d2">0</span>]</p>
           </td>
         </tr>
       </table>
@@ -846,18 +725,18 @@
             </caption>
             <tr>
               <td class="text-right">
-                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+                n: <input class="text-center" id="5_11_n" type="number" value="31" />
               </td>
               <td class="text-right">
-                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+                α: <input class="text-center" id="5_11_alfa" type="number" value="0.1" />
               </td>
             </tr>
             <tr>
               <td class="text-right">
-                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+                Σxi: <input class="text-center" id="5_11_xi" type="number" value="299" />
               </td>
               <td class="text-right">
-                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+                Σ(xi - x̅)^2: <input class="text-center" id="5_11_xi_xmedia" type="number" value="120" />
               </td>
             </tr>
             <tr>
@@ -868,15 +747,11 @@
           </table>
         </div>
         <py-repl>
-          a) P(A u B) = P(A) + P(B) - P(A i B) 
-
-          b) P(A i C i B') = P(A i C) - P(A i B i C)
-
-          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
-
-          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
-
-          e) P((A u B u C)') = 1 - P(A u B u C)
+          X -> v.a. representa a classificação no exame de Química Orgânica
+          α = x <=> α/2 = x/2 <=> 1 - α/2 = 1 - x/2
+          S'^2 = Σ(xi - x̅)^2/(n - 1)
+          IC99%(σ^2) = [((n - 1) * S'^2)/χ^2(n - 1; α/2); ((n - 1) * S'^2)/χ^2(n - 1; 1 - α/2)] = [a; b]
+          IC99%(σ) = [√a; √b]
         </py-repl>
       </div>
       <table class="font-mono mb-4">
@@ -885,11 +760,7 @@
         </tr>
         <tr>
           <td class="flex gap-4 justify-around">
-            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
-            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
-            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
-            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
-            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
+            <p>IC = [<span id="5_11_r1">0</span>; <span id="5_11_r2">0</span>]</p>
           </td>
         </tr>
       </table>
@@ -906,8 +777,7 @@
       <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
         <img class="h-[50%] w-[50%] self-center" src="./6_2.png" alt="exercicio" />
       </div>
-      <div class="flex justify-evenly items-center m-8">
-        <!-- Tabela de valores -->
+      <div class="flex flex-col justify-evenly items-center m-8">
         <div class="relative overflow-x-auto sm:rounded-lg">
           <table class="font-mono table-auto">
             <caption class="text-center bg-cyan-500 rounded-lg text-white">
@@ -915,18 +785,26 @@
             </caption>
             <tr>
               <td class="text-right">
-                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+                n: <input class="text-center" id="6_2_n" type="number" value="31" />
               </td>
               <td class="text-right">
-                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+                α: <input class="text-center" id="6_2_alfa" type="number" value="0.05" />
               </td>
             </tr>
             <tr>
               <td class="text-right">
-                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+                μ do a: <input class="text-center" id="6_2_media1" type="number" value="10" />
               </td>
               <td class="text-right">
-                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+                μ do c: <input class="text-center" id="6_2_media2" type="number" value="11" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                Σxi: <input class="text-center" id="6_2_xi" type="number" value="299" />
+              </td>
+              <td class="text-right">
+                Σ(xi - x̅)^2: <input class="text-center" id="6_2_xi_xmedia" type="number" value="120" />
               </td>
             </tr>
             <tr>
@@ -937,15 +815,28 @@
           </table>
         </div>
         <py-repl>
-          a) P(A u B) = P(A) + P(B) - P(A i B) 
+          a) H0: μ = 10 versus H1: μ ≠ 10 (Teste Bilateral)
+          n grande (n > 30)
+          σ é desconhecido
+          População qualquer
+          T = (x̅ - μ) / (S'/√n) ~ N(0, 1)
+          x̅ = Σxi / n
+          S' = √(Σ(xi - x̅)^2 / (n - 1))
+          tobs = (x̅ - μ) / (S'/√n)
+          RC = ]-∞; -Φ^-1(1 - α/2)] U [Φ^-1(1 - α/2); +∞[
+          Portanto tobs ∉ RC e desta forma não se rejeita H0, para α = 0.05.
+          Não há evidência estatistica com nível de significância 0.05 para
+          considerar que a média é significativamente diferente de 10.
 
-          b) P(A i C i B') = P(A i C) - P(A i B i C)
+          b) valor-p = 2 * P(T > |x|) = 2 * (1 - P(T <= x)) = 2 * (1 - Φ^-1(x))
+          valor-p > 0.05 então rejeita-se H0.
 
-          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
-
-          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
-
-          e) P((A u B u C)') = 1 - P(A u B u C)
+          c) β = P(não rejeitar H0|H0 é falsa) =
+          = P(-Φ^-1(1 - α/2) <= (x̅ - μ1) / (S'/√n) <= Φ^-1(1 - α/2) | μ2 = 11) =
+          = P((-Φ^-1(1 - α/2) * (S'/√n)) + μ1 <= x̅ <= Φ^-1(1 - α/2) + μ1 | μ2 = 11) =
+          = P(((-Φ^-1(1 - α/2) * (S'/√n)) + μ1 - μ2) / (S'/√n) <= (x̅ - μ2) / (S'/√n) <=  ((Φ^-1(1 - α/2) * (S'/√n)) + μ1 - μ2) / (S'/√n)) =
+          = P(((-Φ^-1(1 - α/2) * (S'/√n)) + μ1 - μ2) / (S'/√n) <= Z <=  ((Φ^-1(1 - α/2) * (S'/√n)) + μ1 - μ2) / (S'/√n)) =
+          = Φ(((Φ^-1(1 - α/2) * (S'/√n)) + μ1 - μ2) / (S'/√n)) - Φ(((-Φ^-1(1 - α/2) * (S'/√n)) + μ1 - μ2) / (S'/√n))
         </py-repl>
       </div>
       <table class="font-mono mb-4">
@@ -954,11 +845,10 @@
         </tr>
         <tr>
           <td class="flex gap-4 justify-around">
-            <p>a) P(A u B) = <span id="1_9_a">0</span></p>
-            <p>b) P(A i C i B') = <span id="1_9_b">0</span></p>
-            <p>c) P(C i A' i B') = <span id="1_9_c">0</span></p>
-            <p>d) P(A u B u C) = <span id="1_9_d">0</span></p>
-            <p>e) P((A u B u C)') = <span id="1_9_e">0</span></p>
+            <p>a) tobs = <span id="6_2_a1">0</span></p>
+            <p>RC = ]-∞; <span id="6_2_a2">0</span>] U [<span id="6_2_a3">0</span>; +∞[</p>
+            <p>b) valor-p = <span id="6_2_b">0</span></p>
+            <p>c) β = <span id="6_2_c">0</span></p>
           </td>
         </tr>
       </table>
@@ -968,215 +858,242 @@
         <img class="h-[50%] w-[50%] self-center" src="./6_4.png" alt="exercicio" />
       </div>
       <div class="flex justify-evenly items-center m-8">
-        <!-- Tabela de valores -->
         <div class="relative overflow-x-auto sm:rounded-lg">
-          <table class="table-auto">
-            <caption>
-              Consumidores das marcas
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Dados
             </caption>
             <tr>
-              <td>
-                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              <td class="text-right">
+                Idades: <input class="text-center" id="6_4_i1" type="number" value="27" />
               </td>
-              <td>
-                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
-              </td>
-              <td>
-                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
+              <td class="text-right">
+                n: > <input class="text-center" id="6_4_n" type="number" value="6" />
               </td>
             </tr>
             <tr>
-              <td>
-                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
+              <td class="text-right">
+                <input class="text-center" id="6_4_i2" type="number" value="29" />
               </td>
-              <td>
-                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              <td class="text-right">
+                α: <input class="text-center" id="6_4_alfa" type="number" value="0.05" />
               </td>
             </tr>
             <tr>
-              <td>
-                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
+              <td class="text-right">
+                <input class="text-center" id="6_4_i3" type="number" value="26" />
               </td>
-              <td>
-                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
+              <td class="text-right">
+                μ: <input class="text-center" id="6_4_media" type="number" value="24" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                <input class="text-center" id="6_4_i4" type="number" value="26" />
+              </td>
+              <td class="text-right">
+                1 - α: <input class="text-center" id="6_4_um_alfa" type="number" value="0.99" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                <input class="text-center" id="6_4_i5" type="number" value="23" />
+              </td>
+              <td class="text-right">
+                σ: <input class="text-center" id="6_4_desvio" type="number" value="1" />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right">
+                <input class="text-center" id="6_4_i6" type="number" value="25" />
               </td>
               <td class="text-center">
-                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
+                <button py-click="seisPontoQuatro()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
               </td>
             </tr>
           </table>
         </div>
         <py-repl>
-          a) P(A u B) = P(A) + P(B) - P(A i B) 
+          X -> v.a. que representa a idade (em anos)
+          X ~ (μ, σ)
 
-          b) P(A i C i B') = P(A i C) - P(A i B i C)
+          a) H0: μ = 24 versus H1: μ ≠ 24 (Teste Bilateral)
+          n pequeno (n < 30)
+          σ é desconhecido
+          População normal
+          T = (x̅ - μ) / (S'/√n) ~ t(n - 1)
+          x̅ = Σxi / n
+          S' = √(Σ(xi - x̅)^2 / (n - 1))
+          tobs = (x̅ - μ) / (S'/√n)
+          RC = ]-∞; -t(n - 1; 1 - α/2)] U [t(n - 1; 1 - α/2); +∞[
+          tobs ∉ RC então não se rejeita H0, para α = 0.05.
 
-          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
-
-          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
-
-          e) P((A u B u C)') = 1 - P(A u B u C)
+          b) 1 - α = x <=> α = -x + 1
+          H0: σ = 1 versus H1: σ > 1 (Teste unilateral à direita)
+          T = ((n - 1) * S'^2)/σ^2 ~ χ^2(n - 1)
+          tobs = ((n - 1) * S'^2)/σ^2
+          RC = [χ^2(n - 1; α); +∞[
+          tobs ∈ RC então rejeita-se H0, para α = 0.01.
+          valor-p = P(T > tobs)
+          valor-p > 0.01 então rejeita-se H0.
         </py-repl>
       </div>
-      <table class="mb-4">
+      <table class="font-mono mb-4">
         <tr>
-          <th>Resultados</th>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
         </tr>
         <tr>
-          <td class="flex gap-4 justify-around mt-8">
-            <p>a) P(A u B) =<span id="1_9_a">0</span></p>
-            <p>b) P(A i C i B') =<span id="1_9_b">0</span></p>
-            <p>c) P(C i A' i B') =<span id="1_9_c">0</span></p>
-            <p>d) P(A u B u C) =<span id="1_9_d">0</span></p>
-            <p>e) P((A u B u C)') =<span id="1_9_e">0</span></p>
+          <td class="flex gap-4 justify-around">
+            <p>a) tobs = <span id="6_4_a1">0</span></p>
+            <p>RC = ]-∞; <span id="6_4_a2">0</span>] U [<span id="6_4_a3">0</span>; +∞[</p>
+            <p>tobs = <span id="6_4_b1">0</span></p>
+            <p>RC = [<span id="6_4_b2">0</span>; +∞[</p>
+            <p>p-valor = <span id="6_4_b3">0</span></p>
           </td>
         </tr>
       </table>
     </div>
     <div id="exercicios7" class="hidden flex-row justify-center items-center h-28 w-full">
-      <button py-click="show7_9()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
-        7.9.
-      </button>
       <button py-click="show7_11()" class="h-20 w-20 cursor-pointer bg-cyan-500 rounded-lg m-4 font-mono text-white" type="button">
         7.11.
       </button>
-    </div>
-    <div id="7_9" class="hidden m-4 flex-col">
-      <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
-        <img class="h-[50%] w-[50%] self-center" src="./7_9.png" alt="exercicio" />
-      </div>
-      <div class="flex justify-evenly items-center m-8">
-        <!-- Tabela de valores -->
-        <div class="relative overflow-x-auto sm:rounded-lg">
-          <table class="table-auto">
-            <caption>
-              Consumidores das marcas
-            </caption>
-            <tr>
-              <td>
-                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
-              </td>
-              <td>
-                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
-              </td>
-              <td>
-                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
-              </td>
-              <td>
-                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
-              </td>
-              <td>
-                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
-              </td>
-              <td class="text-center">
-                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <py-repl>
-          a) P(A u B) = P(A) + P(B) - P(A i B) 
-
-          b) P(A i C i B') = P(A i C) - P(A i B i C)
-
-          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
-
-          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
-
-          e) P((A u B u C)') = 1 - P(A u B u C)
-        </py-repl>
-      </div>
-      <table class="mb-4">
-        <tr>
-          <th>Resultados</th>
-        </tr>
-        <tr>
-          <td class="flex gap-4 justify-around mt-8">
-            <p>a) P(A u B) =<span id="1_9_a">0</span></p>
-            <p>b) P(A i C i B') =<span id="1_9_b">0</span></p>
-            <p>c) P(C i A' i B') =<span id="1_9_c">0</span></p>
-            <p>d) P(A u B u C) =<span id="1_9_d">0</span></p>
-            <p>e) P((A u B u C)') =<span id="1_9_e">0</span></p>
-          </td>
-        </tr>
-      </table>
     </div>
     <div id="7_11" class="hidden m-4 flex-col">
       <div id="top_exercise" class="flex flex-col items-start gap-4 mb-4">
         <img class="h-[50%] w-[50%] self-center" src="./7_11.png" alt="exercicio" />
       </div>
       <div class="flex justify-evenly items-center m-8">
-        <!-- Tabela de valores -->
         <div class="relative overflow-x-auto sm:rounded-lg">
-          <table class="table-auto">
-            <caption>
-              Consumidores das marcas
+          <table class="font-mono table-auto">
+            <caption class="text-center bg-cyan-500 rounded-lg text-white">
+              Dados
             </caption>
             <tr>
-              <td>
-                A: <input class="text-center" id="1_9_p_A" type="number" value="51" />
+              <td class="text-right">
+                n: <input class="text-center" id="7_11_n" type="number" value="10" />
               </td>
-              <td>
-                A e B: <input class="text-center" id="1_9_p_AiB" type="number" value="28" />
+              <td class="text-right">
+                Σxi: <input class="text-center" id="7_11_xi" type="number" value="70" />
               </td>
-              <td>
-                A e B e C: <input class="text-center" id="1_9_p_AiBiC" type="number" value="10" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                B: <input class="text-center" id="1_9_p_B" type="number" value="62" />
-              </td>
-              <td>
-                A e C: <input class="text-center" id="1_9_p_AiC" type="number" value="21" />
+              <td class="text-right">
+                Σyi: <input class="text-center" id="7_11_yi" type="number" value="39" />
               </td>
             </tr>
             <tr>
-              <td>
-                C: <input class="text-center" id="1_9_p_C" type="number" value="40" />
+              <td class="text-right">
+                Σxi^2: <input class="text-center" id="7_11_xi_2" type="number" value="694" />
               </td>
-              <td>
-                B e C: <input class="text-center" id="1_9_p_BiC" type="number" value="24" />
+              <td class="text-right">
+                Σyi^2: <input class="text-center" id="7_11_yi_2" type="number" value="206.5" />
               </td>
-              <td class="text-center">
-                <button py-click="umPontoNove()" class="h-full w-40 cursor-pointer bg-cyan-500 rounded-lg font-mono text-white" id="btn">Resolver</button>
+              <td class="text-right">
+                r: <input class="text-center" id="7_11_r" type="number" value="0.945" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                <button py-click="setePontoOnze()" class="h-full w-full cursor-pointer bg-cyan-500 rounded-lg text-white" id="btn">Resolver</button>
               </td>
             </tr>
           </table>
         </div>
         <py-repl>
-          a) P(A u B) = P(A) + P(B) - P(A i B) 
+          X -> anos de serviço
+          Y -> gasto anuais de manutenção
+          r > 0 correlação linear positiva
+          0,8 < r < 1 -> Relação linear forte
 
-          b) P(A i C i B') = P(A i C) - P(A i B i C)
+          a) y = β0 + β1x
+          SQxx = Σxi^2 - (1/n)*(Σxi)^2
+          SQyy = Σyi^2 - (1/n)*(Σyi)^2
+          r = SQxy / (√SQxx * √SQyy) <=> SQxy = r * (√SQxx * √SQyy)
+          β1 = SQxy / SQxx
+          β0 = y̅ - β1x̅
+          β0 corresponde ao valor dos "gastos anuais de manutenção" quando o valor da
+          variável "anos de serviço" é nulo.
+          β1 representa a variação esperada da variável "gastos anuais de manutenção",
+          para cada unidade de variação da variável "anos de serviço".
 
-          c) P(C i A' i B') = P(C) - P(A i C) - P(B i C) + P(A i B i C)
+          b) coeficiente de determinação (avaliação da qualidade do ajuste)
+          r^2 e 1-r^2
+          Da variação total y (de 0 a 100%) r^2 é explicada pela variação da variável
+          x e pelo ajustamento realizado. Fica por explicar 1-r^2 que se deve a causas
+          desconhecidas ou aleatórias. A qualidade do ajustamento é boa.
 
-          d) P(A u B u C) = P(A) + P(B) + P(C) - P(A i B) - P(A i C) - P(B i C) + P(A i B i C) 
-
-          e) P((A u B u C)') = 1 - P(A u B u C)
+          c) ANOVA (Modelo de análise da qualidade do modelo de regressão)
+          SQR = SQxy^2 / SQxx
+          SQE = SQT - SQR
+          SQT = SQyy
+          MQR = SQR / 1
+          MQE = SQE / n-2
+          F = MQR / MQE
         </py-repl>
       </div>
-      <table class="mb-4">
+      <table class="font-mono mb-4">
         <tr>
-          <th>Resultados</th>
+          <th class="text-center bg-cyan-500 rounded-lg text-white">Resultados</th>
         </tr>
         <tr>
-          <td class="flex gap-4 justify-around mt-8">
-            <p>a) P(A u B) =<span id="1_9_a">0</span></p>
-            <p>b) P(A i C i B') =<span id="1_9_b">0</span></p>
-            <p>c) P(C i A' i B') =<span id="1_9_c">0</span></p>
-            <p>d) P(A u B u C) =<span id="1_9_d">0</span></p>
-            <p>e) P((A u B u C)') =<span id="1_9_e">0</span></p>
+          <td class="flex gap-4 justify-around">
+            <p>a) y = <span id="7_11_a1">0</span>] + [<span id="7_11_a2">0</span>x</p>
+            <p>b) r^2 = <span id="7_11_b1">0</span></p>
+            <p>1-r^2 = <span id="7_11_b2">0</span></p>
+          </td>
+          <td class="flex gap-4 justify-around">
+            <p>c)</p>
+          </td>
+          <td class="flex justify-around">
+            <table class="font-mono table-auto">
+              <tr>
+                <th class="text-center bg-cyan-500 rounded-lg text-white">Origem/Fonte de variação</th>
+                <th class="text-center bg-cyan-500 rounded-lg text-white">Soma dos Quadrados(SQ)</th>
+                <th class="text-center bg-cyan-500 rounded-lg text-white">Graus de Libredade</th>
+                <th class="text-center bg-cyan-500 rounded-lg text-white">Média dos Quadrados</th>
+                <th class="text-center bg-cyan-500 rounded-lg text-white">Estatística do Teste-F</th>
+              </tr>
+              <tr>
+                <td class="text-center">
+                  <p class="bg-cyan-500 rounded-lg text-white">Regressão</p>
+                </td>
+                <td class="text-center">
+                  <span id="7_11_SQR">SQR</span>
+                </td>
+                <td class="text-center">
+                  1
+                </td>
+                <td class="text-center">
+                  <span id="7_11_MQR">MQR</span>
+                </td>
+                <td rowspan="3" class="text-center">
+                  <span id="7_11_F">F</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">
+                  <p class="bg-cyan-500 rounded-lg text-white">Erro</p>
+                </td>
+                <td class="text-center">
+                  <span id="7_11_SQE">SQE</span>
+                </td>
+                <td class="text-center">
+                  <span id="7_11_n2">n-2</span>
+                </td>
+                <td class="text-center">
+                  <span id="7_11_MQE">MQE</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">
+                  <p class="bg-cyan-500 rounded-lg text-white">Total</p>
+                </td>
+                <td class="text-center">
+                  <span id="7_11_SQT">SQT</span>
+                </td>
+                <td class="text-center">
+                  <span id="7_11_n1">n-1</span>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
       </table>
@@ -1186,15 +1103,61 @@
       from js import document
       import matplotlib.pyplot as plt
       import scipy
-      from scipy.stats import binom, poisson
+      from scipy.stats import binom, poisson, norm, t, chi2
       import numpy as np
+      import math
+
+      def mediana(x, f):
+          dados = [valor for valor, frequencia in zip(x, f) for _ in range(frequencia)]
+          dados.sort()
+          n = sum(f)
+          if n % 2 == 0:
+              mediana = (dados[n // 2 - 1] + dados[n // 2]) / 2
+          else:
+              mediana = dados[n // 2]
+          return mediana
+
+      def moda(x, f):
+          dados = dict(zip(x, f))
+          moda = max(dados, key=dados.get)
+          return moda
+
+      def quartis(x, f):
+          dados = [valor for valor, frequencia in zip(x, f) for _ in range(frequencia)]
+          dados.sort()
+          n = sum(f)
+          q2 = mediana(x, f)
+          if n % 2 == 0:
+              q1 = mediana(dados[:n//2], f[:len(f)//2])
+          else:
+              q1 = mediana(dados[:n//2], f[:len(f)//2 + 1])
+          if n % 2 == 0:
+              q3 = mediana(dados[n//2:], f[len(f)//2:])
+          else:
+              q3 = mediana(dados[n//2 + 1:], f[len(f)//2 + 1:])
+          return q1, q2, q3
 
       def Binomial(n, p, k):
           probability = binom.pmf(k, n, p)
           return probability
 
       def Poisson(k, lambd):
-          return poisson.pmf(k, lambd)
+          return poisson.cdf(k, lambd)
+
+      def Normal(z):
+          return norm.cdf(z)
+
+      def Normalex(z):
+          return norm.ppf(z)
+
+      def t_student(n, alf):
+          return t.ppf(alf, n)
+
+      def Chi2(graus, prob):
+          return chi2.ppf(1 - prob, graus)
+
+      def prob_chi2(valor, graus):
+          return 1 - chi2.cdf(valor, graus)
 
       def Elementos_de_probabilidades():
           document.getElementById("title").style.display = "none"
@@ -1298,7 +1261,6 @@
           document.getElementById("exercicios2_1").style.display = "flex"
           document.getElementById("exercicios2_2").style.display = "none"
           document.getElementById("2_16").style.display = "none"
-          document.getElementById("2_11").style.display = "none"
       
       def show2_1():
           document.getElementById("2_1").style.display = "flex"
@@ -1315,23 +1277,35 @@
           f_3 = float(document.getElementById("2_1_f_3").value)
 
           fig, ax1 = plt.subplots()
-
           valores = [x_0, x_1, x_2, x_3]
           probabilidades = [f_0, f_1, f_2, f_3]
-          
           ax1.scatter(valores, probabilidades, color='#00bcd4', marker='o')
-          
-          ax1.set_xlabel('Valores')  # Use set_xlabel instead of xlabel
-          ax1.set_ylabel('Probabilidades')  # Use set_ylabel instead of ylabel
-          ax1.set_title('Função de Probabilidade Discreta')  # Use set_title instead of title
-          
+          ax1.set_xlabel('Valores')
+          ax1.set_ylabel('Probabilidades')
+          ax1.set_title('Função de Probabilidade Discreta')
           display(fig, target="plot1")
     
-
           F_0 = f_0
           F_1 = F_0 + f_1
           F_2 = F_1 + f_2
           F_3 = F_2 + f_3
+
+          fig2, ax2 = plt.subplots()
+          valores1 = [x_0, x_0, x_1, x_1, x_2, x_2, x_3, x_3]
+          probabilidades1 = [0, F_0, F_0, F_1, F_1, F_2, F_2, F_3]
+          markers = ['s', 'o', 's', 'o', 's', 'o', 's', 'o']
+          for x, y, marker in zip(valores1, probabilidades1, markers):
+              if marker == 's':
+                  ax2.scatter(x, y, color='#00bcd4', marker=marker, facecolors='none')
+              else:
+                  ax2.scatter(x, y, color='#00bcd4', marker=marker)
+          for i in range(1, len(valores1)):
+              if probabilidades1[i] == probabilidades1[i - 1]:
+                  ax2.plot([valores1[i - 1], valores1[i]], [probabilidades1[i - 1], probabilidades1[i]], color='#00bcd4', linestyle='-')              
+          ax2.set_xlabel('Valores')
+          ax2.set_ylabel('Probabilidades')
+          ax2.set_title('Função de Probabilidade Discreta')
+          display(fig2, target="plot2")
 
           e = sum(x * f for x, f in zip(valores, probabilidades))
           e2 = sum(x**2 * f for x, f in zip(valores, probabilidades))
@@ -1362,48 +1336,58 @@
           document.getElementById("2_1").style.display = "none"
 
       def doisPontoSete():
-          x_0 = float(document.getElementById("2_1_x_0").value)
-          x_1 = float(document.getElementById("2_1_x_1").value)
-          x_2 = float(document.getElementById("2_1_x_2").value)
-          x_3 = float(document.getElementById("2_1_x_3").value)
-          f_0 = float(document.getElementById("2_1_f_0").value)
-          f_1 = float(document.getElementById("2_1_f_1").value)
-          f_2 = float(document.getElementById("2_1_f_2").value)
-          f_3 = float(document.getElementById("2_1_f_3").value)
+          x_2 = float(document.getElementById("2_7_x_2").value)
+          x_3 = float(document.getElementById("2_7_x_3").value)
+          x_4 = float(document.getElementById("2_7_x_4").value)
+          x_5 = float(document.getElementById("2_7_x_5").value)
+          x_6 = float(document.getElementById("2_7_x_6").value)
+          x_7 = float(document.getElementById("2_7_x_7").value)
+          x_8 = float(document.getElementById("2_7_x_8").value)
+          f_2 = float(document.getElementById("2_7_f_2").value)
+          f_3 = float(document.getElementById("2_7_f_3").value)
+          f_4 = float(document.getElementById("2_7_f_4").value)
+          f_5 = float(document.getElementById("2_7_f_5").value)
+          f_6 = float(document.getElementById("2_7_f_6").value)
+          f_7 = float(document.getElementById("2_7_f_7").value)
+          f_8 = float(document.getElementById("2_7_f_8").value)
 
-          F_0 = f_0
-          F_1 = F_0 + f_1
-          F_2 = F_1 + f_2
-          F_3 = F_2 + f_3
+          valores = np.array([x_2, x_3, x_4, x_5, x_6, x_7, x_8])
+          probabilidades = np.array([f_2, f_3, f_4, f_5, f_6, f_7, f_8])
 
-          valores = [x_0, x_1, x_2, x_3]
-          probabilidades = [f_0, f_1, f_2, f_3]
+          # (a) Valor médio
+          valor_medio = np.sum(valores * probabilidades)
 
-          plt.bar(valores, probabilidades, align='center', alpha=0.7)
+          
+          # (a) Moda
+          moda = valores[np.argmax(probabilidades)]
 
-          plt.xlabel('Valores')
-          plt.ylabel('Probabilidades')
-          plt.title('Função de Probabilidade Discreta')
+          
+          # (a) Mediana
+          cum_prob = np.cumsum(probabilidades)
+          mediana_idx = np.argmax(cum_prob >= 0.5)
+          mediana = valores[mediana_idx]
 
-          e = sum(x * f for x, f in zip(valores, probabilidades))
-          e2 = sum(x**2 * f for x, f in zip(valores, probabilidades))
-          v = e2 - e**2
+
+          # (b) Variância e Desvio Padrão
+          variancia = np.sum(probabilidades * (valores - valor_medio) ** 2)
+          desvio_padrao = np.sqrt(variancia)
+
+          # (C) Verificar se a distribuição é simétrica
+          simetrica = " C) A distribuição é simetrica pelas medidas obtidas em a." if valor_medio == mediana else "C) A distribuição não é simetrica pelas medidas obtidas em a."
+
+          # (d) 1.º e 3.º quartil
+          q1 = np.percentile(valores, 25, method='lower')
+          q3 = np.percentile(valores, 75, method='lower')
     
           values = {
-              "2_1_X_0": x_0,
-              "2_1_X_1": x_1,
-              "2_1_X1_1": x_1,
-              "2_1_X_2": x_2,
-              "2_1_X1_2": x_2,
-              "2_1_X_3": x_3,
-              "2_1_X1_3": x_3,
-              "2_1_F_0": F_0,
-              "2_1_F_1": F_1,
-              "2_1_F_2": F_2,
-              "2_1_F_3": F_3,
-              "2_1_d": F_2,
-              "2_1_e1": format(e, '.4f'),
-              "2_1_e2": format(v, '.4f')
+              "2_7_a1": format(valor_medio, '.4f'),
+              "2_7_a2": format(moda, '.4f'),
+              "2_7_a3": format(mediana, '.4f'),
+              "2_7_b1": format(variancia, '.4f'),
+              "2_7_b2": format(desvio_padrao, '.4f'),
+              "2_7_C":  simetrica,
+              "2_7_d1": format(q1, '.4f'),
+              "2_7_d2": format(q3, '.4f'),
           }
     
           for key, value in values.items():
@@ -1417,69 +1401,10 @@
           
       def show2_16():
           document.getElementById("2_16").style.display = "flex"
-          document.getElementById("2_11").style.display = "none"
 
-      def doisPontoDezesseis():
-          #Aqui vamos buscar os valores dos inputs.
-          p_A = float(document.getElementById("1_9_p_A").value) / 100
-          p_B = float(document.getElementById("1_9_p_B").value) / 100
-          p_C = float(document.getElementById("1_9_p_C").value) / 100
-          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
-          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
-          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
-          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
-
-          #Contas da Team leader
-          p_AuB = p_A + p_B - p_AiB
-          p_AiCiBn = p_AiC - p_AiBiC
-          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC_n = 1 - p_AuBuC
-
-          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
-          values = {
-              "1_9_a": format(p_AuB, '.4f'),
-              "1_9_b": format(p_AiCiBn, '.4f'),
-              "1_9_c": format(p_CiAniBn, '.4f'),
-              "1_9_d": format(p_AuBuC, '.4f'),
-              "1_9_e": format(p_AuBuC_n, '.4f')
-          }
-
-          for key, value in values.items():
-              document.getElementById(key).innerHTML = value
-      
       def show2_11():
           document.getElementById("2_11").style.display = "flex"
           document.getElementById("2_16").style.display = "none"
-    
-      def doisPontoOnze():
-          #Aqui vamos buscar os valores dos inputs.
-          p_A = float(document.getElementById("1_9_p_A").value) / 100
-          p_B = float(document.getElementById("1_9_p_B").value) / 100
-          p_C = float(document.getElementById("1_9_p_C").value) / 100
-          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
-          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
-          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
-          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
-    
-          #Contas da Team leader
-          p_AuB = p_A + p_B - p_AiB
-          p_AiCiBn = p_AiC - p_AiBiC
-          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC_n = 1 - p_AuBuC
-    
-          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
-          values = {
-              "1_9_a": format(p_AuB, '.4f'),
-              "1_9_b": format(p_AiCiBn, '.4f'),
-              "1_9_c": format(p_CiAniBn, '.4f'),
-              "1_9_d": format(p_AuBuC, '.4f'),
-              "1_9_e": format(p_AuBuC_n, '.4f')
-          }
-    
-          for key, value in values.items():
-              document.getElementById(key).innerHTML = value
 
       def Algumas_distribuicoes_probabilidade():
           document.getElementById("title").style.display = "none"
@@ -1520,12 +1445,12 @@
       def tresPontoNove():
           lambd = float(document.getElementById("3_9_lambda").value)
 
-          p_xi8 = (Poisson(8,lambd) - Poisson(7,lambd))
-          p_xmin5 = poisson.cdf(4, lambd) # acumuuladas até 4.
-          p_xmaxi3 = (1 - Poisson(2,lambd))
-          p_xmaxi20 = (1 - Poisson(19,lambd))
+          p_xi8 = Poisson(8,lambd) - Poisson(7,lambd)
+          p_xmin5 = Poisson(4, lambd)
+          p_xmaxi3 = 1 - Poisson(2,lambd)
+          p_xmaxi20 = 1 - Poisson(19,lambd)
           p_xi0 = Poisson(0,lambd)
-          p_yi3 = (Poisson(3,4) - Poisson(2,4))
+          p_yi3 = Poisson(3,4) - Poisson(2,4)
 
           values = {
               "3_9_a": format(p_xi8, '.4f'),
@@ -1540,7 +1465,6 @@
               document.getElementById(key).innerHTML = value
 
       def Estimacao_parametros():
-          #Esta função serve para esconder o resto das coisas quando clicamos no  Calculo de Probabilidades.
           document.getElementById("title").style.display = "none"
           document.getElementById("buttons1").style.display = "none"
           document.getElementById("buttons2").style.display = "none"
@@ -1552,29 +1476,27 @@
           document.getElementById("5_11").style.display = "none"
 
       def cincoPontoSete():
-          #Aqui vamos buscar os valores dos inputs.
-          p_A = float(document.getElementById("1_9_p_A").value) / 100
-          p_B = float(document.getElementById("1_9_p_B").value) / 100
-          p_C = float(document.getElementById("1_9_p_C").value) / 100
-          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
-          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
-          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
-          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+          desvio = float(document.getElementById("5_7_desvio").value)
+          n = float(document.getElementById("5_7_n").value)
+          xmedia = float(document.getElementById("5_7_xmedia").value)
+          x = float(document.getElementById("5_7_x").value)
+          erro = float(document.getElementById("5_7_erro").value)
+          desvio2 = float(document.getElementById("5_7_desvio2").value)
 
-          #Contas da Team leader
-          p_AuB = p_A + p_B - p_AiB
-          p_AiCiBn = p_AiC - p_AiBiC
-          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC_n = 1 - p_AuBuC
-
-          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          um_alfa_2 = 1 - (-x + 1)/2
+          fi = Normalex(um_alfa_2)
+          IC1_1 = xmedia - fi*(desvio/math.sqrt(n))
+          IC1_2 = xmedia + fi*(desvio/math.sqrt(n))
+          n2 = (fi*desvio/erro)**2
+          IC2_1 = xmedia - t_student(n - 1, um_alfa_2)*(desvio2/math.sqrt(n))
+          IC2_2 = xmedia + t_student(n - 1, um_alfa_2)*(desvio2/math.sqrt(n))
+          
           values = {
-              "1_9_a": format(p_AuB, '.4f'),
-              "1_9_b": format(p_AiCiBn, '.4f'),
-              "1_9_c": format(p_CiAniBn, '.4f'),
-              "1_9_d": format(p_AuBuC, '.4f'),
-              "1_9_e": format(p_AuBuC_n, '.4f')
+              "5_7_a1": format(IC1_1, '.4f'),
+              "5_7_a2": format(IC1_2, '.4f'),
+              "5_7_c": int(math.ceil(n2)),
+              "5_7_d1": format(IC2_1, '.4f'),
+              "5_7_d2": format(IC2_2, '.4f')
           }
 
           for key, value in values.items():
@@ -1585,36 +1507,28 @@
           document.getElementById("5_7").style.display = "none"
     
       def cincoPontoOnze():
-          #Aqui vamos buscar os valores dos inputs.
-          p_A = float(document.getElementById("1_9_p_A").value) / 100
-          p_B = float(document.getElementById("1_9_p_B").value) / 100
-          p_C = float(document.getElementById("1_9_p_C").value) / 100
-          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
-          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
-          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
-          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
-    
-          #Contas da Team leader
-          p_AuB = p_A + p_B - p_AiB
-          p_AiCiBn = p_AiC - p_AiBiC
-          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC_n = 1 - p_AuBuC
-    
-          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          n = float(document.getElementById("5_11_n").value)
+          alf = float(document.getElementById("5_11_alfa").value)
+          xi = float(document.getElementById("5_11_xi").value)
+          xi_xmedia = float(document.getElementById("5_11_xi_xmedia").value)
+          
+          alfa_dois = alf/2 
+          um_alfa_dois = 1 - alf/2
+          S_2 = xi_xmedia / (n - 1)
+          desvio2_1 = ((n - 1) * S_2) / Chi2(n - 1, alfa_dois)
+          desvio2_2 = ((n - 1) * S_2) / Chi2(n - 1, um_alfa_dois)
+          desvio_1 = math.sqrt(desvio2_1)
+          desvio_2 = math.sqrt(desvio2_2)
+
           values = {
-              "1_9_a": format(p_AuB, '.4f'),
-              "1_9_b": format(p_AiCiBn, '.4f'),
-              "1_9_c": format(p_CiAniBn, '.4f'),
-              "1_9_d": format(p_AuBuC, '.4f'),
-              "1_9_e": format(p_AuBuC_n, '.4f')
+              "5_11_r1": format(desvio_1, '.4f'),
+              "5_11_r2": format(desvio_2, '.4f')
           }
     
           for key, value in values.items():
               document.getElementById(key).innerHTML = value
 
       def Testes_hipoteses():
-          #Esta função serve para esconder o resto das coisas quando clicamos no  Calculo de Probabilidades.
           document.getElementById("title").style.display = "none"
           document.getElementById("buttons1").style.display = "none"
           document.getElementById("buttons2").style.display = "none"
@@ -1626,29 +1540,31 @@
           document.getElementById("6_4").style.display = "none"
 
       def seisPontoDois():
-          #Aqui vamos buscar os valores dos inputs.
-          p_A = float(document.getElementById("1_9_p_A").value) / 100
-          p_B = float(document.getElementById("1_9_p_B").value) / 100
-          p_C = float(document.getElementById("1_9_p_C").value) / 100
-          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
-          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
-          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
-          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
+          n = float(document.getElementById("6_2_n").value)
+          alf = float(document.getElementById("6_2_alfa").value)
+          media1 = float(document.getElementById("6_2_media1").value)
+          media2 = float(document.getElementById("6_2_media2").value)
+          xi = float(document.getElementById("6_2_xi").value)
+          xi_xmedia = float(document.getElementById("6_2_xi_xmedia").value) 
 
-          #Contas da Team leader
-          p_AuB = p_A + p_B - p_AiB
-          p_AiCiBn = p_AiC - p_AiBiC
-          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC_n = 1 - p_AuBuC
-
-          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          um_alfa_2 = 1 - alf/2
+          xmedia = xi / n
+          S = math.sqrt(xi_xmedia / (n - 1))
+          tobs = (xmedia - media1) / (S / math.sqrt(n))
+          fi = Normalex(um_alfa_2)
+          RC1 = -float(format(fi, '.2f'))
+          RC2 = float(format(fi, '.2f'))
+          valor_p = 2 * (1 - Normal(abs(float(format(tobs, '.2f')))))
+          f1 = ((RC1 * (S/math.sqrt(n))) + media1 - media2) / (S/math.sqrt(n))
+          f2 = ((RC2 * (S/math.sqrt(n))) + media1 - media2) / (S/math.sqrt(n))
+          bet = - Normal(abs(float(format(f2, '.2f')))) + Normal(abs(float(format(f1, '.2f'))))
+          
           values = {
-              "1_9_a": format(p_AuB, '.4f'),
-              "1_9_b": format(p_AiCiBn, '.4f'),
-              "1_9_c": format(p_CiAniBn, '.4f'),
-              "1_9_d": format(p_AuBuC, '.4f'),
-              "1_9_e": format(p_AuBuC_n, '.4f')
+              "6_2_a1": format(tobs, '.4f'),
+              "6_2_a2": format(RC1, '.4f'),
+              "6_2_a3": format(RC2, '.4f'),
+              "6_2_b": format(valor_p, '.4f'),
+              "6_2_c": format(bet, '.4f')
           }
 
           for key, value in values.items():
@@ -1659,103 +1575,90 @@
           document.getElementById("6_2").style.display = "none"
     
       def seisPontoQuatro():
-          #Aqui vamos buscar os valores dos inputs.
-          p_A = float(document.getElementById("1_9_p_A").value) / 100
-          p_B = float(document.getElementById("1_9_p_B").value) / 100
-          p_C = float(document.getElementById("1_9_p_C").value) / 100
-          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
-          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
-          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
-          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
-    
-          #Contas da Team leader
-          p_AuB = p_A + p_B - p_AiB
-          p_AiCiBn = p_AiC - p_AiBiC
-          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC_n = 1 - p_AuBuC
-    
-          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          i1 = float(document.getElementById("6_4_i1").value)
+          i2 = float(document.getElementById("6_4_i2").value)
+          i3 = float(document.getElementById("6_4_i3").value)
+          i4 = float(document.getElementById("6_4_i4").value)
+          i5 = float(document.getElementById("6_4_i5").value)
+          i6 = float(document.getElementById("6_4_i6").value)
+          n = float(document.getElementById("6_4_n").value)
+          alf = float(document.getElementById("6_4_alfa").value)
+          media = float(document.getElementById("6_4_media").value)
+          um_alfa = float(document.getElementById("6_4_um_alfa").value)
+          desvio = float(document.getElementById("6_4_desvio").value)
+
+          xmedia = (i1 + i2 + i3 + i4 + i5 + i6) / n
+          xi_xmedia = ((i1 - xmedia)**2 + (i2 - xmedia)**2 + (i3 - xmedia)**2 + (i4 - xmedia)**2 + (i5 - xmedia)**2 + (i6 - xmedia)**2)
+          S = math.sqrt(xi_xmedia/ (n - 1))
+          tobs1 = (xmedia - media) / (S/math.sqrt(n))
+          t = t_student(n - 1, 1 - alf/2)
+          RC1_1 = -t
+          RC1_2 = t
+
+          alf2 = abs(um_alfa - 1)
+          tobs2 = ((n - 1) * S**2)/(desvio**2)
+          RC2 = Chi2(n - 1, alf2)
+          valor_p = prob_chi2(tobs2, n - 1)
+
           values = {
-              "1_9_a": format(p_AuB, '.4f'),
-              "1_9_b": format(p_AiCiBn, '.4f'),
-              "1_9_c": format(p_CiAniBn, '.4f'),
-              "1_9_d": format(p_AuBuC, '.4f'),
-              "1_9_e": format(p_AuBuC_n, '.4f')
+              "6_4_a1": format(tobs1, '.4f'),
+              "6_4_a2": format(RC1_1, '.4f'),
+              "6_4_a3": format(RC1_2, '.4f'),
+              "6_4_b1": format(tobs2, '.4f'),
+              "6_4_b2": format(RC2, '.4f'),
+              "6_4_b3": format(valor_p, '.4f')
           }
     
           for key, value in values.items():
               document.getElementById(key).innerHTML = value
 
       def Correlacao_regressao():
-          #Esta função serve para esconder o resto das coisas quando clicamos no  Calculo de Probabilidades.
           document.getElementById("title").style.display = "none"
           document.getElementById("buttons1").style.display = "none"
           document.getElementById("buttons2").style.display = "none"
           document.getElementById("exercicios7").style.display = "flex"
           document.getElementById("voltar").style.display = "flex"
-
-      def show7_9():
-          document.getElementById("7_9").style.display = "flex"
-          document.getElementById("7_11").style.display = "none"
-
-      def setePontoNove():
-          #Aqui vamos buscar os valores dos inputs.
-          p_A = float(document.getElementById("1_9_p_A").value) / 100
-          p_B = float(document.getElementById("1_9_p_B").value) / 100
-          p_C = float(document.getElementById("1_9_p_C").value) / 100
-          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
-          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
-          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
-          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
-
-          #Contas da Team leader
-          p_AuB = p_A + p_B - p_AiB
-          p_AiCiBn = p_AiC - p_AiBiC
-          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC_n = 1 - p_AuBuC
-
-          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
-          values = {
-              "1_9_a": format(p_AuB, '.4f'),
-              "1_9_b": format(p_AiCiBn, '.4f'),
-              "1_9_c": format(p_CiAniBn, '.4f'),
-              "1_9_d": format(p_AuBuC, '.4f'),
-              "1_9_e": format(p_AuBuC_n, '.4f')
-          }
-
-          for key, value in values.items():
-              document.getElementById(key).innerHTML = value
       
       def show7_11():
           document.getElementById("7_11").style.display = "flex"
-          document.getElementById("7_9").style.display = "none"
     
       def setePontoOnze():
-          #Aqui vamos buscar os valores dos inputs.
-          p_A = float(document.getElementById("1_9_p_A").value) / 100
-          p_B = float(document.getElementById("1_9_p_B").value) / 100
-          p_C = float(document.getElementById("1_9_p_C").value) / 100
-          p_AiB = float(document.getElementById("1_9_p_AiB").value) / 100
-          p_AiC = float(document.getElementById("1_9_p_AiC").value) / 100
-          p_BiC = float(document.getElementById("1_9_p_BiC").value) / 100
-          p_AiBiC = float(document.getElementById("1_9_p_AiBiC").value) / 100
-    
-          #Contas da Team leader
-          p_AuB = p_A + p_B - p_AiB
-          p_AiCiBn = p_AiC - p_AiBiC
-          p_CiAniBn = p_C - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC = p_A + p_B + p_C - p_AiB - p_AiC - p_BiC + p_AiBiC
-          p_AuBuC_n = 1 - p_AuBuC
-    
-          #Passar os valores para um dicionario para nao andar a escrever tudo a maneta.
+          n = float(document.getElementById("7_11_n").value)
+          xi = float(document.getElementById("7_11_xi").value)
+          yi = float(document.getElementById("7_11_yi").value)
+          xi_2 = float(document.getElementById("7_11_xi_2").value)
+          yi_2 = float(document.getElementById("7_11_yi_2").value)
+          r = float(document.getElementById("7_11_r").value)
+          
+          SQxx = xi_2 - (1/n)*((xi)**2)
+          SQyy = yi_2 - (1/n)*((yi)**2)
+          SQxy = r * (math.sqrt(SQxx) * math.sqrt(SQyy))
+          beta1 = SQxy / SQxx
+          beta0 = (yi/n) - beta1 * (xi/n)
+          
+          r_dois = r**2
+          um_r_dois = 1 - r_dois
+          
+          SQR = SQxy**2 / SQxx
+          SQT = SQyy
+          SQE = SQT - SQR
+          MQR = SQR / 1
+          MQE = SQE / (n-2)
+          F = MQR / MQE
+
           values = {
-              "1_9_a": format(p_AuB, '.4f'),
-              "1_9_b": format(p_AiCiBn, '.4f'),
-              "1_9_c": format(p_CiAniBn, '.4f'),
-              "1_9_d": format(p_AuBuC, '.4f'),
-              "1_9_e": format(p_AuBuC_n, '.4f')
+              "7_11_a1": format(beta0, '.4f'),
+              "7_11_a2": format(beta1, '.4f'),
+              "7_11_b1": format(r_dois, '.4f'),
+              "7_11_b2": format(um_r_dois, '.4f'),
+              "7_11_SQR": format(SQR, '.4f'),
+              "7_11_MQR": format(MQR, '.4f'),
+              "7_11_F": format(F, '.4f'),
+              "7_11_SQE": format(SQE, '.4f'),
+              "7_11_n2": format(n-2, '.4f'),
+              "7_11_MQE": format(MQE, '.4f'),
+              "7_11_SQT": format(SQT, '.4f'),
+              "7_11_n1": format(n-1, '.4f')
           }
     
           for key, value in values.items():
@@ -1773,7 +1676,6 @@
           document.getElementById("2_7").style.display = "none"
           document.getElementById("exercicios2_2").style.display = "none"
           document.getElementById("2_16").style.display = "none"
-          document.getElementById("2_11").style.display = "none"
           document.getElementById("exercicios3").style.display = "none"
           document.getElementById("3_1").style.display = "none"
           document.getElementById("3_9").style.display = "none"
@@ -1784,7 +1686,6 @@
           document.getElementById("6_2").style.display = "none"
           document.getElementById("6_4").style.display = "none"
           document.getElementById("exercicios7").style.display = "none"
-          document.getElementById("7_9").style.display = "none"
           document.getElementById("7_11").style.display = "none"
           document.getElementById("voltar").style.display = "none"
           document.getElementById("title").style.display = "flex"
